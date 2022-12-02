@@ -97,6 +97,10 @@ public class OrdersDao {
         String sql ="SELECT * FROM Orders";
         return getData(sql);
     }
+    public List<Orders> getAll1(){
+        String sql ="SELECT * FROM Orders ";
+        return getData(sql);
+    }
     @SuppressLint("Range")
     public int getStatus(){
         String sql ="SELECT Vehicle.trangthai as status FROM Orders INNER JOIN Vehicle ON Vehicle.id = Orders.vehicle_id";
