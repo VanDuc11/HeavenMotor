@@ -1,7 +1,9 @@
 package com.example.heaven_motor.fragment;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -13,21 +15,25 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
-import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.heaven_motor.R;
+import com.example.heaven_motor.Splash_screen_MainActivity2;
 import com.example.heaven_motor.database.UserDAO;
 import com.example.heaven_motor.model.Users;
 
@@ -38,10 +44,12 @@ import java.io.InputStream;
 public class ToiFragment extends Fragment {
     ImageView img,edImg,chup,folder;
     TextView tvTen,tvMa,tvTuoi,tvDiaChi,tvSDT,tvCCCD;
-    Button capNhat,update,huy;
+    Button capNhat,update,huy,Dondadat,phanhoi,dangxuat;
     Users obj;
     UserDAO userDAO;
     EditText edTen,edTuoi,edDiaChi,edSDT, edCCCD;
+    CardView cardView;
+    LinearLayout linearLayout;
     int yc = 123;
 
 
@@ -70,8 +78,43 @@ public class ToiFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        img = view.findViewById(R.id.imgUser);
+        cardView =view.findViewById(R.id.card);
+        linearLayout = view.findViewById(R.id.lear);
+        Animation animation= AnimationUtils.loadAnimation(getContext(),R.anim.lefttoright);
+        cardView.startAnimation(animation);
+        Animation animation1= AnimationUtils.loadAnimation(getContext(),R.anim.info);
+        linearLayout.startAnimation(animation1);
+        Dondadat  =view.findViewById(R.id.btnDonDaDat);
+        phanhoi = view.findViewById(R.id.btnPhanHoi);
+        dangxuat = view.findViewById(R.id.btnDangXuat);
 
+        dangxuat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                builder.setMessage("Bạn có muốn xóa sách mã đăng xuất không ?");
+                builder.setCancelable(true);
+                builder.setPositiveButton("Có", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Intent intent = new Intent(getActivity(), Splash_screen_MainActivity2.class);
+                        startActivity(intent);
+                    }
+                });
+                builder.setNegativeButton("Không", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+                AlertDialog dialog = builder.create();
+                builder.show();
+            }
+        });
+
+
+        img = view.findViewById(R.id.imgUser);
         tvTen = view.findViewById(R.id.tvTenUser);
         tvMa = view.findViewById(R.id.tvMaUser);
         tvTuoi = view.findViewById(R.id.tvTuoi);
@@ -95,15 +138,22 @@ public class ToiFragment extends Fragment {
             obj.setImg(intToByteArray(R.drawable.ic_baseline_person_24));
             userDAO.update(obj);
             img.setImageResource(R.drawable.ic_baseline_person_24);
-            Toast.makeText(getContext(), "Không có", Toast.LENGTH_SHORT).show();
         }
 
 
-           byte[] imguser = obj.getImg();
-           Bitmap bitmap = BitmapFactory.decodeByteArray(imguser, 0, imguser.length);
-           img.setImageBitmap(bitmap);
+        byte[] imguser = obj.getImg();
+        Bitmap bitmap = BitmapFactory.decodeByteArray(imguser, 0, imguser.length);
+        img.setImageBitmap(bitmap);
+        phanhoi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent1 = new Intent(getActivity(), PhanHoiActivity.class);
+                intent1.putExtra("user", obj.getName());
+                startActivity(intent1);
+            }
+        });
 
-           capNhat.setOnClickListener(new View.OnClickListener() {
+        capNhat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Dialog dialog = new Dialog(getContext());
@@ -184,6 +234,7 @@ public class ToiFragment extends Fragment {
                 dialog.show();
             }
         });
+
 
 
 

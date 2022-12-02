@@ -9,6 +9,16 @@ public class Users {
     private String CCCD;
     private String address;
     private byte[] img;
+    private String phanhoi;
+
+    public String getPhanhoi() {
+        return phanhoi;
+    }
+
+    public void setPhanhoi(String phanhoi) {
+        this.phanhoi = phanhoi;
+    }
+
     public Users() {
     }
 
@@ -20,7 +30,7 @@ public class Users {
         this.img = img;
     }
 
-    public Users(String id, String passwork, String name, int date, String phone, String CCCD, String address, byte[] img) {
+    public Users(String id, String passwork, String name, int date, String phone, String CCCD, String address, byte[] img, String phanhoi) {
         this.id = id;
         this.passwork = passwork;
         this.name = name;
@@ -29,6 +39,7 @@ public class Users {
         this.CCCD = CCCD;
         this.address = address;
         this.img = img;
+        this.phanhoi = phanhoi;
     }
 
     public String getPhone() {
