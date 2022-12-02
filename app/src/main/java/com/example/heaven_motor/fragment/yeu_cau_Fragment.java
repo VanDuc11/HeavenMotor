@@ -45,10 +45,11 @@ public class yeu_cau_Fragment extends Fragment {
         list = ordersDao.getAll();
         adapter = new ThongBaoAdapter(getContext(),this,list);
 
-        listPhanHoi = userDAO.getAll();
-        phanHoiAdapter = new PhanHoiAdapter(listPhanHoi,getContext());
         listView.setAdapter(adapter);
-        listView.setAdapter(phanHoiAdapter);
+
+//        listPhanHoi = userDAO.getAll();
+//        phanHoiAdapter = new PhanHoiAdapter(listPhanHoi,getContext());
+//        listView.setAdapter(phanHoiAdapter);
     }
 
     @Override

@@ -101,7 +101,10 @@ public class VehicleDAO {
         return getData(sql);
     }
 
-
+    public List<Vehicle> getThanhPhan(){
+        String sql = "SELECT * FROM Vehicle WHERE trangThai = 0";
+        return getData(sql);
+    }
     @SuppressLint("Range")
     public String  getLoaixe(){
         String sql = "SELECT Categories.name as name_categories FROM Categories JOIN Vehicle ON Vehicle.categorie_id = Categories.id ";

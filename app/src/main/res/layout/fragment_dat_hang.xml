@@ -4,8 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@drawable/bachgroud"
-
+    android:background="@drawable/bg4"
     tools:context=".fragment.DatHang_Fragment">
 
 
@@ -17,6 +16,6 @@
         android:layout_height="match_parent"
         android:layout_margin="5dp"
         android:layout_marginEnd="@dimen/cardview_compat_inset_shadow"
-        android:numColumns="3" />
+        android:numColumns="2" />
 
 </LinearLayout>
