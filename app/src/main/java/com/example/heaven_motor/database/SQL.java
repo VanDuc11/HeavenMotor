@@ -20,7 +20,8 @@ public class SQL extends SQLiteOpenHelper {
             "date integer," +
             "address text," +
             "img blob,"+
-            "cccd text);";
+            "cccd text,"+
+            "phanHoi text)" ;
 
     public static final String Table_Categories = "CREATE TABLE Categories " +
             "(id integer PRIMARY KEY AUTOINCREMENT," +

@@ -6,7 +6,6 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
-import com.example.heaven_motor.R;
 import com.example.heaven_motor.model.Users;
 
 import java.util.ArrayList;
@@ -36,6 +35,8 @@ public class UserDAO {
             int date = cs.getInt(4);
             String address = cs.getString(5);
             String cccd = cs.getString(6);
+//            byte[] img = cs.getBlob(7);
+//            String phanHoi = cs.getString(8);
             Users us = new Users();
             ds.add(us);
             cs.moveToNext();
@@ -54,6 +55,7 @@ public class UserDAO {
         values.put("cccd",u.getCCCD());
         values.put("img", u.getImg());
         values.put("passwork",u.getPasswork());
+        values.put("phanHoi",u.getPhanhoi());
         long kq = db.insert("Users",null,values);
         if (kq <= 0){
             return -1;
@@ -70,6 +72,7 @@ public class UserDAO {
         values.put("cccd",u.getCCCD());
         values.put("img",u.getImg());
         values.put("passwork",u.getPasswork());
+        values.put("phanHoi",u.getPhanhoi());
         long kq = db.update("Users",values,"id=?",new String[]{String.valueOf(u.getId())});
         if (kq <= 0){
             return -1;
@@ -110,7 +113,7 @@ public class UserDAO {
             u.setCCCD(c.getString(c.getColumnIndex("cccd")));
             u.setImg(c.getBlob(c.getColumnIndex("img")));
             u.setPasswork(c.getString(c.getColumnIndex("passwork")));
-
+            u.setPhanhoi(c.getString(c.getColumnIndex("phanHoi")));
             list.add(u);
         }
         return list;
