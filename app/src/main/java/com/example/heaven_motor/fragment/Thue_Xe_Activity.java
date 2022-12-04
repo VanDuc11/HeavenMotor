@@ -57,6 +57,7 @@ public class Thue_Xe_Activity extends AppCompatActivity  {
     List<Vehicle> list;
     VehicleDAO dao1;
 
+
     Vehicle v;
     Orders o;
     OrdersDao ordersDao;
@@ -284,6 +285,8 @@ public class Thue_Xe_Activity extends AppCompatActivity  {
 
         v.setTrangThai(1);// trạng thái đặt hàng
         dao1.Update(v);
+        o.setStatus(0); // trạng thái đơn hàng
+        ordersDao.Update(o);
 
         o.setTotal(tinhtien);
         o.setPhatsinh(0);

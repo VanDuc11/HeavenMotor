@@ -31,6 +31,7 @@ public class OrdersDao {
         values.put("start_time",o.getStart_time());
         values.put("end_time",o.getEnd_time());
         values.put("total",o.getTotal());
+        values.put("status",o.getStatus());
         values.put("phatsinh",o.getPhatsinh());
         values.put("timethuc",o.getTimethuc());
         long kq = db.insert("Orders",null,values);
@@ -48,7 +49,7 @@ public class OrdersDao {
         values.put("total",o.getTotal());
         values.put("phatsinh",o.getPhatsinh());
         values.put("timethuc",o.getTimethuc());
-
+        values.put("status",o.getStatus());
         long kq = db.update("Orders",values,"id=?",new String[]{String.valueOf(o.getId())});
         if (kq <= 0){
             return -1;
@@ -67,6 +68,8 @@ public class OrdersDao {
             o.setStart_time(c.getString(c.getColumnIndex("start_time")));
             o.setEnd_time(c.getString(c.getColumnIndex("end_time")));
             o.setTotal(c.getInt(c.getColumnIndex("total")));
+            o.setStatus(c.getInt(c.getColumnIndex("status")));
+            o.setTimethuc(c.getString(c.getColumnIndex("timethuc")));
             o.setPhatsinh(Integer.parseInt(c.getString(c.getColumnIndex("phatsinh"))));
 
             list.add(o);
@@ -95,22 +98,54 @@ public class OrdersDao {
 
         return list.get(0);
     }
+    @SuppressLint("Range")
+    public int getDate1(){
+        String Sql = "SELECT (timethuc - end_time) as Date FROM Orders";
+        List<Integer> list = new ArrayList<>();
+        Cursor c = db.rawQuery(Sql,null);
+        while (c.moveToNext()){
+            try {
+                list.add(Integer.parseInt(c.getString(c.getColumnIndex("Date"))));
+            }catch (Exception e){
+                list.add(0);
+            }
+
+        }
+
+        return list.get(0);
+    }
+    @SuppressLint("Range")
+    public int getDate2(){
+        String Sql = "SELECT (timethuc - start_time) as Date FROM Orders";
+        List<Integer> list = new ArrayList<>();
+        Cursor c = db.rawQuery(Sql,null);
+        while (c.moveToNext()){
+            try {
+                list.add(Integer.parseInt(c.getString(c.getColumnIndex("Date"))));
+            }catch (Exception e){
+                list.add(0);
+            }
+
+        }
+
+        return list.get(0);
+    }
     public List<Orders> getAll(){
         String sql ="SELECT * FROM Orders";
         return getData(sql);
     }
     public List<Orders> getAll1(){
-        String sql ="SELECT * FROM Orders ";
+        String sql ="SELECT * FROM Orders WHERE status = 0";
         return getData(sql);
     }
     @SuppressLint("Range")
-    public int getStatus(){
-        String sql ="SELECT Vehicle.trangthai as status FROM Orders INNER JOIN Vehicle ON Vehicle.id = Orders.vehicle_id";
+    public int getPrice(String id){
+        String sql ="SELECT sum(total+phatsinh) as tongtien FROM Orders WHERE id=?";
         List<Integer> list = new ArrayList<>();
-        Cursor c = db.rawQuery(sql,null);
+        Cursor c = db.rawQuery(sql,new String[]{id});
         while (c.moveToNext()){
             try {
-                list.add(Integer.parseInt(c.getString(c.getColumnIndex("status"))));
+                list.add(Integer.parseInt(c.getString(c.getColumnIndex("tongtien"))));
             }catch (Exception e){
                 list.add(0);
             }
@@ -120,9 +155,15 @@ public class OrdersDao {
 
     @SuppressLint("Range")
     public List<Orders> getDonhang(String id){
+        String sql ="SELECT * FROM Orders WHERE user_id=? AND status = 0";
+        return getData(sql,id);
+    }
+    public List<Orders> getAllDH(String id){
         String sql ="SELECT * FROM Orders WHERE user_id=?";
         return getData(sql,id);
     }
+
+
     @SuppressLint("Range")
     public List<Top> getTop(){
         String sqlTop ="SELECT vehicle_id,count(vehicle_id) as soluong From Orders  as OD join Vehicle as Xe on OD.vehicle_id = Xe.id  join Categories as ca on ca.id = Xe.categorie_id  GROUP BY vehicle_id ORDER BY soluong DESC LIMIT 10 ";

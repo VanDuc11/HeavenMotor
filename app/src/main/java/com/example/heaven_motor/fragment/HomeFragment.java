@@ -155,7 +155,7 @@ public class HomeFragment extends Fragment {
     }
 
     public void loadData(){
-        list = dao.getThanhPhan();
+        list = dao.getAll();
         adapter = new DatHang_homeAdapter(getContext(),this,list);
         gridView.setAdapter(adapter);
 

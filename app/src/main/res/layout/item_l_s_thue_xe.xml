@@ -6,12 +6,13 @@
     android:layout_height="match_parent"
     app:cardElevation="4dp"
     android:layout_weight="0"
+    app:cardCornerRadius="16dp"
     app:cardUseCompatPadding="true"
 
     >
 
     <LinearLayout
-        android:background="@drawable/bo_goc_custom"
+        android:background="@drawable/bo_goc_custom2"
         android:padding="10dp"
         android:layout_width="match_parent"
         android:layout_height="167dp"
@@ -43,7 +44,7 @@
                 android:id="@+id/item_ls_thue_xe_tvTT"
                 android:layout_width="110dp"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="220dp"
+                android:layout_marginLeft="190dp"
                 android:layout_marginTop="-20dp"
                 android:text="TextView" />
 

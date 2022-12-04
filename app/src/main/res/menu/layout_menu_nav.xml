@@ -21,11 +21,13 @@
             android:icon="@drawable/cart_24"
             android:title="Đặt hàng"/>
 
-        <item android:id="@+id/LSDH"
+        <item android:id="@+id/DH"
             android:icon="@drawable/ic_baseline_arrow_right_24"
-            android:title="Lịch Sử đơn Hàng"/>
+            android:title="Đơn hàng của bạn"/>
         <item android:id="@+id/TB"
             android:title="Thông Báo"/>
+        <item android:id="@+id/LSDH"
+            android:title="Lịch sử đơn hàng"/>
     </group>
     <item android:title="Thống kê">
         <menu>

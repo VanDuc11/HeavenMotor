@@ -1,6 +1,7 @@
 package com.example.heaven_motor.fragment;
 
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -41,15 +42,15 @@ public class yeu_cau_Fragment extends Fragment {
         listView = v.findViewById(R.id.frag_yeu_cau);
         return v;
     }
+    public void loadDialog(){
+        AlertDialog.Builder  builder = new AlertDialog.Builder(getContext());
+
+    }
     public void loadData(){
-        list = ordersDao.getAll();
+        list = ordersDao.getAll1();
         adapter = new ThongBaoAdapter(getContext(),this,list);
 
         listView.setAdapter(adapter);
-
-//        listPhanHoi = userDAO.getAll();
-//        phanHoiAdapter = new PhanHoiAdapter(listPhanHoi,getContext());
-//        listView.setAdapter(phanHoiAdapter);
     }
 
     @Override

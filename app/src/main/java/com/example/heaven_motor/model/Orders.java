@@ -8,12 +8,12 @@ public class Orders {
     private String end_time,timethuc;
     private int total;
     private int phatsinh;
-
+    private int status;
 
     public Orders() {
     }
 
-    public Orders(int id, String user_id, String vehicle_id, String start_time, String end_time, String timethuc, int total, int phatsinh) {
+    public Orders(int id, String user_id, String vehicle_id, String start_time, String end_time, String timethuc, int total, int phatsinh, int status) {
         this.id = id;
         this.user_id = user_id;
         this.vehicle_id = vehicle_id;
@@ -22,6 +22,15 @@ public class Orders {
         this.timethuc = timethuc;
         this.total = total;
         this.phatsinh = phatsinh;
+        this.status = status;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
     }
 
     public String getTimethuc() {

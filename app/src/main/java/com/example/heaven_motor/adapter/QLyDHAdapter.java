@@ -1,6 +1,8 @@
 package com.example.heaven_motor.adapter;
 
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,7 +29,7 @@ public class QLyDHAdapter extends ArrayAdapter {
     List<Orders> list;
     Context context;
     QlyDonHang_Fragment fragment;
-    TextView tvTenSp,tvMa,tvThoigian,tvLoai,tvUser;
+    TextView tvTenSp,tvMa,tvThoigian,tvLoai,tvUser,tvSDT,tvDC,tvTien,tvTT;
 
 
     public QLyDHAdapter(@NonNull Context context, QlyDonHang_Fragment fragment, List<Orders> list) {
@@ -52,6 +54,10 @@ public class QLyDHAdapter extends ArrayAdapter {
             tvTenSp = convertView.findViewById(R.id.item_qldh_tvmaXe);
             tvThoigian = convertView.findViewById(R.id.item_qldh_tvThoigian);
             tvLoai = convertView.findViewById(R.id.item_qldh_tvLoai);
+            tvDC = convertView.findViewById(R.id.item_qldh_tvDiachi);
+            tvSDT = convertView.findViewById(R.id.item_qldh_tvSDT);
+            tvTien = convertView.findViewById(R.id.item_qldh_tvTien);
+            tvTT = convertView.findViewById(R.id.item_qldh_tvTT);
             OrdersDao ordersDao = new OrdersDao(context);
             VehicleDAO dao = new VehicleDAO(context);
             UserDAO userDAO = new UserDAO(context);
@@ -67,7 +73,24 @@ public class QLyDHAdapter extends ArrayAdapter {
                     +" "+ v.getName()+" " + v.getCapacity());
             tvLoai.setText("Loại xe: " +dao.getLoaixe());
             tvThoigian.setText("Thời gian thuê: "+ o.getStart_time() +" - "+ o.getEnd_time());
-
+            tvDC.setText("Địa chỉ: " + u.getAddress());
+            tvSDT.setText("SĐT:" + u.getPhone());
+            String order_id = String.valueOf(o.getId());
+            int tien = ordersDao.getPrice(order_id);
+            tvTien.setText("Tổng tiền: " + tien + " đ");
+            if (o.getStatus()== 1){
+                tvTT.setText("Tình trạng: Đơn hàng bị hủy");
+            }else if (o.getStatus() == 2){
+                tvTT.setText("Tình trạng:  Đơn hàng thành công");
+            }
+            tvSDT.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    String sdt = u.getPhone();
+                    Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel: "+sdt));
+                    context.startActivity(intent);
+                }
+            });
         }
 
         return convertView;

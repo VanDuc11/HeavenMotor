@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/bg"
     tools:context=".fragment.QLyXe_Fragment">
 
     <ListView
@@ -18,7 +19,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_marginRight="16dp"
-        android:layout_marginBottom="35dp"
+        android:layout_marginBottom="85dp"
         android:background="@drawable/bogoc_button"
         android:backgroundTint="#FFFFFF"
         app:icon="@drawable/add_24" />
