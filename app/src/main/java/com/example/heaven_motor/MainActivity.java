@@ -102,33 +102,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
 
 
-        bottomNavigationView = findViewById(R.id.bottom);
-        bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch (item.getItemId()) {
-                    case R.id.home:
-                        getSupportFragmentManager().beginTransaction().replace(R.id.pagerTrangchu, homeFragment).commit();
-                        pager.setAdapter(adapter);
-                        pager.setCurrentItem(9);
-//                        Toast.makeText(MainActivity.this, "lên", Toast.LENGTH_SHORT).show();
-                        return true;
-                    case R.id.TinTuc:
-                        getSupportFragmentManager().beginTransaction().replace(R.id.pagerTrangchu, tinTucFragment).commit();
-                        pager.setAdapter(adapter);
-                        pager.setCurrentItem(10);
-//                        Toast.makeText(MainActivity.this, "lên", Toast.LENGTH_SHORT).show();
-                        return true;
-                    case R.id.toi:
-                        getSupportFragmentManager().beginTransaction().replace(R.id.pagerTrangchu, toiFragment).commit();
-                        pager.setAdapter(adapter);
-                        pager.setCurrentItem(11);
-//                    Toast.makeText(MainActivity.this, "ok", Toast.LENGTH_SHORT).show();
-                        return true;
-                }
-                return false;
-            }
-        });
+
         pager = findViewById(R.id.pagerTrangchu);
         addFragment(pager);
         navigationView.setNavigationItemSelectedListener(this);
@@ -142,9 +116,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         String user = intent.getStringExtra("user");
 
 
-        navigationView.getMenu().findItem(R.id.DatHang).setChecked(true);
-        pager.setCurrentItem(3);
-
+//        navigationView.getMenu().findItem(R.id.DatHang).setChecked(true);
+//        pager.setCurrentItem(3);
+        getSupportFragmentManager().beginTransaction().replace(R.id.pagerTrangchu, homeFragment).commit();
+        pager.setCurrentItem(9);
         if (user.equals("Admin")){
 
             navigationView.getMenu().findItem(R.id.QLLX).setVisible(true);
@@ -215,10 +190,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             toolbar.setTitle("Home");
             pager.setAdapter(adapter);
             pager.setCurrentItem(9);
-        } else if (id == R.id.TinTuc) {
-            toolbar.setTitle("Tin tức");
-            pager.setAdapter(adapter);
-            pager.setCurrentItem(10);
         } else if (id == R.id.toi) {
             toolbar.setTitle("Tài khoản");
             pager.setAdapter(adapter);
