@@ -11,6 +11,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -25,6 +26,8 @@ import com.example.heaven_motor.model.Orders;
 import com.example.heaven_motor.model.Users;
 import com.example.heaven_motor.model.Vehicle;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.List;
 
 public class ThongBaoAdapter extends ArrayAdapter<Orders> {
@@ -33,6 +36,8 @@ public class ThongBaoAdapter extends ArrayAdapter<Orders> {
     yeu_cau_Fragment fragment;
     TextView tvTenSp,tvMa,tvThoigian,tvYc,tvUser;
     Button btnXuly;
+    Calendar calendar;
+    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 
 
     public ThongBaoAdapter(@NonNull Context context, yeu_cau_Fragment fragment, List<Orders> list) {
@@ -83,9 +88,11 @@ public class ThongBaoAdapter extends ArrayAdapter<Orders> {
                         dao.Update(v);
                         btnXuly.setText("Đã xử lý");
                         btnXuly.setEnabled(false);
+                        calendar = Calendar.getInstance();
                     }
                 });
             }
+
             if( v.getTrangThai() == 2){
 
                 btnXuly.setText("Đã xử lý");
@@ -100,16 +107,36 @@ public class ThongBaoAdapter extends ArrayAdapter<Orders> {
                         dao.Update(v);
                         btnXuly.setText("Đã xử lý");
                         btnXuly.setEnabled(false);
+                        calendar = Calendar.getInstance();
+                        o.setTimethuc(sdf.format(calendar.getTime()));
+                        ordersDao.Update(o);
+                        if (o.getEnd_time() != o.getTimethuc()){
+                            int date = ordersDao.getDate1();
+                            if (date !=0){
+                                Toast.makeText(context, "Bạn đã trả muộn là: " + date, Toast.LENGTH_SHORT).show();
+                                int date2 = ordersDao.getDate2()*v.getPrice();
+                                Toast.makeText(context, "Tổng tiền: " + date2, Toast.LENGTH_SHORT).show();
+                                o.setPhatsinh(date2);
+                                ordersDao.Update(o);
+                            }
+
+                        }
                     }
                 });
             }else if ( v.getTrangThai() == 4){
                 v.setTrangThai(0);
                 dao.Update(v);
+                o.setStatus(2);
+                ordersDao.Update(o);
             }else if (v.getTrangThai() == 0){
                 btnXuly.setText("Đã hoàn thành");
                 btnXuly.setEnabled(false);
             }
 
+            if (o.getStatus() == 1){
+                btnXuly.setText("Đơn bị hủy");
+                btnXuly.setEnabled(false);
+            }
         }
 
         return convertView;

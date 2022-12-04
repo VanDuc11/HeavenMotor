@@ -73,6 +73,7 @@ public class LSDonHangAdapter extends ArrayAdapter<Orders> {
             tvGia.setText(ordersDao.getDate()+ " x " + v.getPrice() +" Tổng thanh toán: "+ o.getTotal());
 
 
+
             if (v.getTrangThai() == 1) {
                 tvTT.setTextColor(Color.RED);
                 tvTT.setText("Đang xử lý");
@@ -104,6 +105,12 @@ public class LSDonHangAdapter extends ArrayAdapter<Orders> {
                 btnXuly.setEnabled(false);
 
             }
+            if (o.getStatus() == 1){
+                tvTT.setText("Đơn đã bị hủy");
+                btnXuly.setText("đơn đã hủy");
+                btnXuly.setEnabled(false);
+            }
+
         }
 
 

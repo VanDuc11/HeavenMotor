@@ -4,6 +4,8 @@
     android:layout_height="650dp"
     android:orientation="vertical"
     android:layout_gravity="center"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp"
     android:background="@drawable/bo_goc_custom2"
     xmlns:tools="http://schemas.android.com/tools">
     <ImageView

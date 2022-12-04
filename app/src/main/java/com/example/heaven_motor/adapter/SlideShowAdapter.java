@@ -1,5 +1,8 @@
 package com.example.heaven_motor.adapter;
 
+import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,13 +14,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.heaven_motor.R;
 import com.example.heaven_motor.model.Slideshow;
 
+import java.math.BigInteger;
 import java.util.List;
 
 public class SlideShowAdapter extends RecyclerView.Adapter<SlideShowAdapter.SlideShowViewHolder>{
 
 
-    private final List<Slideshow> mListPhoto;
-
+    private List<Slideshow> mListPhoto;
     public SlideShowAdapter(List<Slideshow> mListPhoto) {
         this.mListPhoto = mListPhoto;
     }
@@ -49,7 +52,7 @@ public class SlideShowAdapter extends RecyclerView.Adapter<SlideShowAdapter.Slid
 
     public static class SlideShowViewHolder extends RecyclerView.ViewHolder{
 
-        private final ImageView imgPhoto;
+        private  ImageView imgPhoto;
 
         public SlideShowViewHolder(@NonNull View itemView) {
             super(itemView);
