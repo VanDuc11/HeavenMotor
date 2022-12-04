@@ -1,66 +1,96 @@
 package com.example.heaven_motor.fragment;
 
+import android.app.DatePickerDialog;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.DatePicker;
+import android.widget.EditText;
+import android.widget.TextView;
+
+import androidx.fragment.app.Fragment;
 
 import com.example.heaven_motor.R;
+import com.example.heaven_motor.database.OrdersDao;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link DoanhThu_Fragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+
+
 public class DoanhThu_Fragment extends Fragment {
-
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    public DoanhThu_Fragment() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment DoanhThuFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static DoanhThu_Fragment newInstance(String param1, String param2) {
-        DoanhThu_Fragment fragment = new DoanhThu_Fragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
+    Button btntungay,btndenngay,btndoanhthu;
+    EditText edtungay,eddenngay;
+    TextView tvdoanhthu;
+    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+    int mYear,mMonth,mDay;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_doanh_thu, container, false);
+
+        View v= inflater.inflate(R.layout.fragment_doanh_thu, container, false);
+        edtungay = v.findViewById(R.id.edtungay);
+        eddenngay = v.findViewById(R.id.eddenngay);
+        tvdoanhthu = v.findViewById(R.id.tvdoanhthu);
+        btntungay = v.findViewById(R.id.btntungay);
+        btndenngay = v.findViewById(R.id.btndenngay);
+        btndoanhthu = v.findViewById(R.id.btndoanhthu);
+        btntungay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Calendar c = Calendar.getInstance();
+                mYear = c.get(Calendar.YEAR);
+                mMonth = c.get(Calendar.MONTH);
+                mYear = c.get(Calendar.DAY_OF_MONTH);
+                DatePickerDialog d = new DatePickerDialog(getActivity(),0,mDatetungay,mDay,mMonth,mYear);
+                d.show();
+            }
+        });
+        btndenngay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Calendar c = Calendar.getInstance();
+                mYear = c.get(Calendar.YEAR);
+                mMonth = c.get(Calendar.MONTH);
+                mYear = c.get(Calendar.DAY_OF_MONTH);
+                DatePickerDialog d = new DatePickerDialog(getActivity(),0,mDatedenngay,mDay,mMonth,mYear);
+                d.show();
+            }
+        });
+        btndoanhthu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String tungay = edtungay.getText().toString();
+                String denngay = eddenngay.getText().toString();
+                OrdersDao ordersDao = new OrdersDao(getActivity());
+                tvdoanhthu.setText("Doanh thu: "+ordersDao.getdoanhthu(tungay,denngay)+" VND");
+            }
+        });
+        return v;
     }
+    DatePickerDialog.OnDateSetListener mDatetungay = new DatePickerDialog.OnDateSetListener() {
+        @Override
+        public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+            mYear = year;
+            mMonth =monthOfYear;
+            mDay = dayOfMonth;
+            GregorianCalendar c = new GregorianCalendar(mDay,mMonth,mYear);
+            edtungay.setText(sdf.format(c.getTime()));
+        }
+    };
+    DatePickerDialog.OnDateSetListener mDatedenngay = new DatePickerDialog.OnDateSetListener() {
+        @Override
+        public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+            mYear = year;
+            mMonth =monthOfYear;
+            mDay = dayOfMonth;
+            GregorianCalendar c = new GregorianCalendar(mDay,mMonth,mYear);
+            eddenngay.setText(sdf.format(c.getTime()));
+        }
+    };
+
 }
