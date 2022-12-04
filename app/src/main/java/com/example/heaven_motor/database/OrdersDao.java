@@ -7,8 +7,10 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.example.heaven_motor.model.Orders;
+import com.example.heaven_motor.model.Top;
 import com.example.heaven_motor.model.Vehicle;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,6 +18,7 @@ public class OrdersDao {
     SQL sqLite;
     SQLiteDatabase db;
     Context context;
+    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
     public OrdersDao(Context context){
         this.context = context;
         sqLite = new SQL(context);
@@ -161,6 +164,41 @@ public class OrdersDao {
     }
 
 
+    @SuppressLint("Range")
+    public List<Top> getTop(){
+        String sqlTop ="SELECT vehicle_id,count(vehicle_id) as soluong From Orders  as OD join Vehicle as Xe on OD.vehicle_id = Xe.id  join Categories as ca on ca.id = Xe.categorie_id  GROUP BY vehicle_id ORDER BY soluong DESC LIMIT 10 ";
 
+        List<Top> list = new ArrayList<Top>();
+        VehicleDAO vehicleDAO = new VehicleDAO(context);
+        Cursor c =db.rawQuery(sqlTop,null);
+        while (c.moveToNext()){
+            Top top = new Top();
+            Vehicle vehicle =vehicleDAO.getID(String.valueOf(c.getInt(c.getColumnIndex("vehicle_id"))));
+            top.setId(vehicle.getId());
+            top.setName(vehicle.getName());
+//        top.setBrand(vehicle.getBrand());
 
+            top.setCapacity(vehicle.getCapacity());
+            top.setBKS(vehicle.getBKS());
+            top.setCategorie_id(vehicle.getCategorie_id());
+            top.setSoluong(c.getInt(c.getColumnIndex("soluong")));
+//        String s ="ID: " +top.getId() + "\t\t\t\t\t" +" " +top.getName()+ "\t\t\t\t\t" +" "+top.getBrand()+ "\t\t\t\t\t" +" "+top.getCapacity()+ "\t\t\t\t\t" +" "+top.getBKS()+ "\t\t\t\t\t" +" "+top.getSoluong();
+            list.add(top);
+        }
+        return list;
+    }
+    @SuppressLint("Range")
+    public int getdoanhthu(String tungay, String denngay) {
+        String sqldoanhthu = "SELECT SUM(total) as doanhthu from Orders WHERE start_time BETWEEN ? AND ? ";
+        List<Integer> list = new ArrayList<Integer>();
+        Cursor c = db.rawQuery(sqldoanhthu, new String[]{tungay, denngay});
+        while (c.moveToNext()) {
+            try {
+                list.add(Integer.parseInt(c.getString(c.getColumnIndex("doanhthu"))));
+            } catch (Exception e) {
+                list.add(0);
+            }
+        }
+        return list.get(0);
+    }
 }
