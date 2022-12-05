@@ -90,6 +90,7 @@ public class HomeFragment extends Fragment {
         gridView =v.findViewById(R.id.frag_datHang_grip_home);
 
 
+
         loadData();
         return v;
     }
