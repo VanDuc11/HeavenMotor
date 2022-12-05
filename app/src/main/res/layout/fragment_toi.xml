@@ -87,14 +87,14 @@
             android:orientation="vertical"
             android:id="@+id/lear">
             <Button
-                android:id="@+id/btnDonDaDat"
+                android:id="@+id/btnViTri"
                 android:layout_marginTop="5dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Các đơn đã đặt"
+                android:text="Địa điểm cửa hàng"
                 android:textStyle="bold"
                 android:textColor="#FF3BEC0B"
-                android:drawableEnd="@drawable/ic_baseline_shopping_cart_24"
+                android:drawableEnd="@drawable/ic_baseline_location_on_24"
                 android:background="@drawable/bo_goc_custom"
                 />
             <Button
