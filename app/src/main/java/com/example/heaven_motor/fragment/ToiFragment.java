@@ -93,7 +93,7 @@ public class ToiFragment extends Fragment {
             public void onClick(View v) {
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-                builder.setMessage("Bạn có muốn xóa sách mã đăng xuất không ?");
+                builder.setMessage("Bạn có chắc muốn đăng xuất không ?");
                 builder.setCancelable(true);
                 builder.setPositiveButton("Có", new DialogInterface.OnClickListener() {
                     @Override

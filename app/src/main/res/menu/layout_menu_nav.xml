@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <group android:checkableBehavior="single">
-
+        <item android:id="@+id/home"
+            android:icon="@drawable/ic_baseline_home_24"
+            android:title="Home"/>
 
         <item android:id="@+id/QLX"
             android:icon="@drawable/ic_baseline_home_24"
@@ -19,11 +21,13 @@
             android:icon="@drawable/cart_24"
             android:title="Đặt hàng"/>
 
-        <item android:id="@+id/LSDH"
+        <item android:id="@+id/DH"
             android:icon="@drawable/ic_baseline_arrow_right_24"
-            android:title="Lịch Sử đơn Hàng"/>
+            android:title="Đơn hàng của bạn"/>
         <item android:id="@+id/TB"
             android:title="Thông Báo"/>
+        <item android:id="@+id/LSDH"
+            android:title="Lịch sử đơn hàng"/>
     </group>
     <item android:title="Thống kê">
         <menu>
@@ -38,6 +42,9 @@
     </item>
     <item android:title="Người dùng">
         <menu>
+            <item android:id="@+id/toi"
+                android:icon="@drawable/ic_baseline_people_24"
+                android:title="Tài khoản"/>
             <item android:id="@+id/QLND"
                 android:icon="@drawable/ic_baseline_people_24"
                 android:title="Quản lý người dùng"/>

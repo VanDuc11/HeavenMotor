@@ -5,6 +5,7 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:background="@drawable/bo_goc_custom"
+    android:padding="20dp"
     app:layout_constraintCircleRadius="@dimen/cardview_compat_inset_shadow"
     >
 
@@ -13,7 +14,6 @@
         android:layout_height="wrap_content"
         android:text="Thuê Xe"
         android:textSize="30dp"
-
         android:layout_gravity="center"
         android:gravity="center"/>
 
