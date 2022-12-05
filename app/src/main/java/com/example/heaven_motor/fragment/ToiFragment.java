@@ -44,7 +44,7 @@ import java.io.InputStream;
 public class ToiFragment extends Fragment {
     ImageView img,edImg,chup,folder;
     TextView tvTen,tvMa,tvTuoi,tvDiaChi,tvSDT,tvCCCD;
-    Button capNhat,update,huy,Dondadat,phanhoi,dangxuat;
+    Button capNhat,update,huy,vitri,phanhoi,dangxuat;
     Users obj;
     UserDAO userDAO;
     EditText edTen,edTuoi,edDiaChi,edSDT, edCCCD;
@@ -84,7 +84,7 @@ public class ToiFragment extends Fragment {
         cardView.startAnimation(animation);
         Animation animation1= AnimationUtils.loadAnimation(getContext(),R.anim.info);
         linearLayout.startAnimation(animation1);
-        Dondadat  =view.findViewById(R.id.btnDonDaDat);
+        vitri  =view.findViewById(R.id.btnViTri);
         phanhoi = view.findViewById(R.id.btnPhanHoi);
         dangxuat = view.findViewById(R.id.btnDangXuat);
 
@@ -110,6 +110,13 @@ public class ToiFragment extends Fragment {
                 });
                 AlertDialog dialog = builder.create();
                 builder.show();
+            }
+        });
+        vitri.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(),LocationActivity.class);
+                startActivity(intent);
             }
         });
 
