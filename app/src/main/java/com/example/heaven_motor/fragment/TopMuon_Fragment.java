@@ -24,6 +24,7 @@ public class TopMuon_Fragment extends Fragment {
     ListView lv;
     ArrayList<Top> list;
     TopAdapter adapter;
+    OrdersDao ordersDao;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -32,10 +33,14 @@ public class TopMuon_Fragment extends Fragment {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_top_muon, container, false);
         lv = v.findViewById(R.id.lvtop);
-        OrdersDao ordersDao = new OrdersDao(getActivity());
-        list = (ArrayList<Top>) ordersDao.getTop();
-        adapter = new TopAdapter(getActivity(), this, list);
-        lv.setAdapter(adapter);
+        loaData();
         return v;
+    }
+
+    public void loaData(){
+        ordersDao = new OrdersDao(getContext());
+        list = (ArrayList<Top>) ordersDao.getTop();
+        adapter = new TopAdapter(getContext(), this, list);
+        lv.setAdapter(adapter);
     }
 }

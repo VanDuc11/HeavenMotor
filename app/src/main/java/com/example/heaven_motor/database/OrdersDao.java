@@ -164,16 +164,16 @@ public class OrdersDao {
     }
 
 
-    @SuppressLint("Range")
-    public List<Top> getTop(){
-        String sqlTop ="SELECT vehicle_id,count(vehicle_id) as soluong From Orders  as OD join Vehicle as Xe on OD.vehicle_id = Xe.id  join Categories as ca on ca.id = Xe.categorie_id  GROUP BY vehicle_id ORDER BY soluong DESC LIMIT 10 ";
+        @SuppressLint("Range")
+        public List<Top> getTop(){
+        String sqlTop ="SELECT vehicle_id,count(vehicle_id) as soluong From Orders  GROUP BY vehicle_id ORDER BY soluong DESC LIMIT 10 ";
 
         List<Top> list = new ArrayList<Top>();
         VehicleDAO vehicleDAO = new VehicleDAO(context);
         Cursor c =db.rawQuery(sqlTop,null);
         while (c.moveToNext()){
             Top top = new Top();
-            Vehicle vehicle =vehicleDAO.getID(String.valueOf(c.getInt(c.getColumnIndex("vehicle_id"))));
+            @SuppressLint("Range") Vehicle vehicle =vehicleDAO.getID(c.getString(c.getColumnIndex("vehicle_id")));
             top.setId(vehicle.getId());
             top.setName(vehicle.getName());
 //        top.setBrand(vehicle.getBrand());
@@ -189,7 +189,7 @@ public class OrdersDao {
     }
     @SuppressLint("Range")
     public int getdoanhthu(String tungay, String denngay) {
-        String sqldoanhthu = "SELECT SUM(total) as doanhthu from Orders WHERE start_time BETWEEN ? AND ? ";
+        String sqldoanhthu = "SELECT SUM(total) as doanhthu from Orders WHERE  start_time BETWEEN ? AND ? ";
         List<Integer> list = new ArrayList<Integer>();
         Cursor c = db.rawQuery(sqldoanhthu, new String[]{tungay, denngay});
         while (c.moveToNext()) {
