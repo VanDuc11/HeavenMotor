@@ -67,7 +67,7 @@ public class LSDonHang_Fragment extends Fragment {
     public void LoaData(){
         SharedPreferences pref = getActivity().getSharedPreferences("USER_FILE", Context.MODE_PRIVATE);
         String user = pref.getString("USERNAME", "");
-        list = (List<Orders>) dao.getDonhang(user);
+        list = dao.getDonhang(user);
         adapter = new LSDonHangAdapter(getContext(),this,list);
         recyclerView.setAdapter(adapter);
     }
@@ -123,8 +123,6 @@ public class LSDonHang_Fragment extends Fragment {
 //        windowAttributes.gravity = gravity;
         window.setAttributes(windowAttributes);
         dialog.show();
-
-
 
     }
     @Override

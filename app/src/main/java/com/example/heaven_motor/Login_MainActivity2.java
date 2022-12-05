@@ -1,6 +1,8 @@
 package com.example.heaven_motor;
 
 import android.annotation.SuppressLint;
+import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -24,7 +26,7 @@ public class Login_MainActivity2 extends AppCompatActivity {
     Users users;
     UserDAO userDAO;
     TextView tvTaoTK;
-
+    Context context = this;
     @SuppressLint("MissingInflatedId")
 
     @Override
@@ -47,7 +49,21 @@ public class Login_MainActivity2 extends AppCompatActivity {
         Login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+//                ProgressDialog progressDialog = ProgressDialog.show(context,"Loading...",
+//                        "Please wait...",true);
+//                progressDialog.setCancelable(true);
+//                new Thread(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        try {
+//                            Thread.sleep(3);
+//                        } catch (InterruptedException e) {
+//                            e.printStackTrace();
+//                        }
+//                    }
+//                }).start();
                 checkLogin();
+
             }
         });
         tvTaoTK.setOnClickListener(new View.OnClickListener() {
