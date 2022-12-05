@@ -34,6 +34,7 @@ import com.example.heaven_motor.fragment.Doi_Mat_Khau_Fragment;
 import com.example.heaven_motor.fragment.HomeFragment;
 import com.example.heaven_motor.fragment.LSDH_Fragment;
 import com.example.heaven_motor.fragment.LSDonHang_Fragment;
+import com.example.heaven_motor.fragment.PhanHoiFragment;
 import com.example.heaven_motor.fragment.QLyLoaiXe_Fragment;
 import com.example.heaven_motor.fragment.QLyNguoi_Dung_Fragment;
 import com.example.heaven_motor.fragment.QLyXe_Fragment;
@@ -129,6 +130,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             navigationView.getMenu().findItem(R.id.topXe).setVisible(true);
             navigationView.getMenu().findItem(R.id.doanhThu).setVisible(true);
             navigationView.getMenu().findItem(R.id.QLND).setVisible(true);
+            navigationView.getMenu().findItem(R.id.phanHoi).setVisible(true);
         } else {
             navigationView.getMenu().findItem(R.id.QLLX).setVisible(false);
             navigationView.getMenu().findItem(R.id.QLX).setVisible(false);
@@ -136,6 +138,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             navigationView.getMenu().findItem(R.id.topXe).setVisible(false);
             navigationView.getMenu().findItem(R.id.doanhThu).setVisible(false);
             navigationView.getMenu().findItem(R.id.QLND).setVisible(false);
+            navigationView.getMenu().findItem(R.id.phanHoi).setVisible(false);
         }
 
     }
@@ -207,6 +210,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             toolbar.setTitle("Lịch sử đơn hàng");
             pager.setAdapter(adapter);
             pager.setCurrentItem(13);
+        }else if (id==R.id.phanHoi){
+            toolbar.setTitle("Phản hồi của khách hàng");
+            pager.setAdapter(adapter);
+            pager.setCurrentItem(14);
         }
         drawerLayout.closeDrawer(navigationView);
         return false;
@@ -229,6 +236,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         adapter.addFragment(new ToiFragment(), "Tài Khoản");
         adapter.addFragment(new yeu_cau_Fragment(), "Yêu Cầu");
         adapter.addFragment(new LSDH_Fragment(),"LSDH");
+        adapter.addFragment(new PhanHoiFragment(),"Phản hồi của khách hàng");
         pager.setAdapter(adapter);
 
     }
