@@ -48,6 +48,10 @@
             <item android:id="@+id/QLND"
                 android:icon="@drawable/ic_baseline_people_24"
                 android:title="Quản lý người dùng"/>
+            <item
+                android:id="@+id/phanHoi"
+                android:title="Phản hồi của khách hàng"
+                android:icon="@drawable/ic_baseline_reply_24"/>
 
             <item android:id="@+id/doiPass"
                 android:icon="@drawable/ic_baseline_vpn_key_24"
