@@ -1,6 +1,7 @@
 package com.example.heaven_motor.adapter;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,25 +14,21 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.example.heaven_motor.R;
+import com.example.heaven_motor.database.VehicleDAO;
 import com.example.heaven_motor.fragment.TopMuon_Fragment;
-import com.example.heaven_motor.model.Categoris;
-import com.example.heaven_motor.model.Top;
+import com.example.heaven_motor.model.Orders;
+import com.example.heaven_motor.model.Vehicle;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public class TopAdapter extends ArrayAdapter<Top> {
+public class TopAdapter extends ArrayAdapter<Orders> {
     private Context context;
-    TopMuon_Fragment topMuon_fragment;
-    ArrayList<Top> lists;
-    TextView tvid,tvten,tvloai,tvdungtich,tvbienso,tvsoluong,tvnhanhieu;
-    ImageView imgDel;
-    ListView lvtopxe,lvdonhuy,lvdonthanhcong;
+    List<Orders> lists;
+    TextView tvid,tvten,tvTK,tvHuy,tvMaxe;
 
-    public TopAdapter(@NonNull Context context, TopMuon_Fragment topMuon_fragment, ArrayList<Top> lists) {
+    public TopAdapter(@NonNull Context context, List<Orders> lists) {
         super(context, 0,lists);
         this.context = context;
-        this.topMuon_fragment = topMuon_fragment;
         this.lists = lists;
     }
 
@@ -43,28 +40,33 @@ public class TopAdapter extends ArrayAdapter<Top> {
             LayoutInflater inflater =(LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             v = inflater.inflate(R.layout.item_top_muon,null);
         }
-        final  Top item =lists.get(position);
+        final  Orders item = lists.get(position);
         if (item != null){
             tvid =v.findViewById(R.id.tvid);
-            tvid.setText("ID: "+item.getId());
-
             tvten =v.findViewById(R.id.tvten);
-            tvten.setText("XE: "+item.getName());
+            tvTK =v.findViewById(R.id.tvTK);
+            tvMaxe = v.findViewById(R.id.tvMaxe);
+            tvHuy = v.findViewById(R.id.tvhuy);
 
-            tvloai =v.findViewById(R.id.tvloai);
-            tvloai.setText("Loại xe: "+item.getCategorie_id());
+            VehicleDAO  dao = new VehicleDAO(context);
+            Vehicle vehicle = dao.getID(item.getVehicle_id());
+            String name = vehicle.getName();
 
-//           tvnhanhieu =v.findViewById(R.id.tvnhanhieu);
-//           tvnhanhieu.setText("Hẵng: "+item.getBrand());
 
-            tvdungtich =v.findViewById(R.id.tvdungtich);
-            tvdungtich.setText("Dung tích: "+item.getCapacity());
 
-            tvbienso =v.findViewById(R.id.tvbienso);
-            tvbienso.setText("Biển số: "+item.getBKS());
 
-            tvsoluong =v.findViewById(R.id.tvsoluong);
-            tvsoluong.setText("Số lượng: "+item.getSoluong());
+            tvid.setText(String.valueOf(item.getId()));
+            tvten.setText(name);
+            tvMaxe.setText(vehicle.getId());
+            if (item.getStatus() == 1){
+                tvHuy.setText("X");
+                tvTK.setText("");
+                tvHuy.setTextColor(Color.RED);
+            }else if (item.getStatus() == 2){
+                tvTK.setText("X");
+                tvHuy.setText("");
+                tvTK.setTextColor(Color.RED);
+            }
 
         }
         return v;
