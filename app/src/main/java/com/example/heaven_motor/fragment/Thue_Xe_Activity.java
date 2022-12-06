@@ -157,8 +157,9 @@ public class Thue_Xe_Activity extends AppCompatActivity  {
 
                     String id = list1.get(i).getVehicle_id();
                     int stt = dao1.getID(id).getTrangThai();
+                    int stt2 = list1.get(i).getStatus();
                     if (id.equals(v.getId())){
-                        if(stt == 0){
+                        if(stt == 0||stt2 == 1){
                             btnThueXe.setEnabled(true);
                         }else {
                             if (list1.get(i).getStart_time().equals(date1) || list1.get(i).getEnd_time().equals(date2)){

@@ -130,7 +130,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             navigationView.getMenu().findItem(R.id.topXe).setVisible(true);
             navigationView.getMenu().findItem(R.id.doanhThu).setVisible(true);
             navigationView.getMenu().findItem(R.id.QLND).setVisible(true);
+            navigationView.getMenu().findItem(R.id.TB).setVisible(true);
             navigationView.getMenu().findItem(R.id.phanHoi).setVisible(true);
+
         } else {
             navigationView.getMenu().findItem(R.id.QLLX).setVisible(false);
             navigationView.getMenu().findItem(R.id.QLX).setVisible(false);
@@ -139,6 +141,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             navigationView.getMenu().findItem(R.id.doanhThu).setVisible(false);
             navigationView.getMenu().findItem(R.id.QLND).setVisible(false);
             navigationView.getMenu().findItem(R.id.phanHoi).setVisible(false);
+            navigationView.getMenu().findItem(R.id.TB).setVisible(false);
+
         }
 
     }

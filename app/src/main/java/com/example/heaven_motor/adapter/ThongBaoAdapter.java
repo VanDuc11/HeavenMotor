@@ -113,7 +113,7 @@ public class ThongBaoAdapter extends ArrayAdapter<Orders> {
                         if (o.getEnd_time() != o.getTimethuc()){
                             int date = ordersDao.getDate1();
                             if (date !=0){
-                                Toast.makeText(context, "Bạn đã trả muộn là: " + date, Toast.LENGTH_SHORT).show();
+//                                Toast.makeText(context, "Bạn đã trả muộn là: " + date, Toast.LENGTH_SHORT).show();
                                 int date2 = ordersDao.getDate2()*v.getPrice();
                                 Toast.makeText(context, "Tổng tiền: " + date2, Toast.LENGTH_SHORT).show();
                                 o.setPhatsinh(date2);
