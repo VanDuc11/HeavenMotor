@@ -85,25 +85,23 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         userDAO = new UserDAO(this);
         Users users = userDAO.getID(user2);
         String name = users.getName();
-        nameUser.setText("Welcome " + name+" !");
+        nameUser.setText("Welcome " + name + " !");
 
         try {
             byte[] imguser = users.getImg();
             Bitmap bitmap = BitmapFactory.decodeByteArray(imguser, 0, imguser.length);
-            if (users.getImg()==null){
+            if (users.getImg() == null) {
                 imgUser.setImageResource(R.drawable.ic_user);
-            }else {
+            } else {
                 imgUser.setImageBitmap(bitmap);
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
 
         //imgUser.set
         //Log.d("zzzz", name);
-
-
 
 
         pager = findViewById(R.id.pagerTrangchu);
@@ -122,7 +120,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         navigationView.getMenu().findItem(R.id.home).setChecked(true);
 
         pager.setCurrentItem(9);
-        if (user.equals("Admin")){
+        if (user.equals("Admin")) {
 
             navigationView.getMenu().findItem(R.id.QLLX).setVisible(true);
             navigationView.getMenu().findItem(R.id.QLX).setVisible(true);
@@ -210,11 +208,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         } else if (id == R.id.dangXuat) {
 
             startActivity(new Intent(MainActivity.this, Login_MainActivity2.class));
-        }else if (id == R.id.LSDH){
+        } else if (id == R.id.LSDH) {
             toolbar.setTitle("Lịch sử đơn hàng");
             pager.setAdapter(adapter);
             pager.setCurrentItem(13);
-        }else if (id==R.id.phanHoi){
+        } else if (id == R.id.phanHoi) {
             toolbar.setTitle("Phản hồi của khách hàng");
             pager.setAdapter(adapter);
             pager.setCurrentItem(14);
@@ -239,8 +237,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         adapter.addFragment(new TinTucFragment(), "Tài khoản");
         adapter.addFragment(new ToiFragment(), "Tài Khoản");
         adapter.addFragment(new yeu_cau_Fragment(), "Yêu Cầu");
-        adapter.addFragment(new LSDH_Fragment(),"LSDH");
-        adapter.addFragment(new PhanHoiFragment(),"Phản hồi của khách hàng");
+        adapter.addFragment(new LSDH_Fragment(), "LSDH");
+        adapter.addFragment(new PhanHoiFragment(), "Phản hồi của khách hàng");
         pager.setAdapter(adapter);
 
     }

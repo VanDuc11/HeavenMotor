@@ -3,8 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_gravity="center"
-    android:gravity="center"
     android:background="@drawable/bo_goc_custom2"
+    android:gravity="center"
     android:orientation="vertical"
     android:padding="20dp">
 
@@ -12,69 +12,65 @@
         android:id="@+id/textView20"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:textSize="20dp"
-        android:textColor="@color/red"
-        android:textStyle="bold"
         android:layout_margin="20dp"
-        android:text="Chi tiết đơn hàng" />
+        android:gravity="center"
+        android:text="Chi tiết đơn hàng"
+        android:textColor="@color/red"
+        android:textSize="20dp"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/dialog_tvMadon"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="4dp"
         android:layout_gravity="center"
+        android:layout_margin="4dp"
         android:text="mã đơn hàng" />
 
     <TextView
         android:id="@+id/dialog_tvUser_id"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="4dp"
         android:layout_gravity="center"
-
+        android:layout_margin="4dp"
         android:text="người đặt" />
 
     <TextView
         android:id="@+id/dialog_tvXe"
+        android:layout_margin="4dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-
         android:text="xe" />
 
     <TextView
         android:id="@+id/dialog_tvLoaiXe"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Loại xe"
         android:layout_gravity="center"
-
         android:layout_margin="4dp"
-        />
+
+        android:text="Loại xe" />
 
     <TextView
         android:id="@+id/dialog_tvdate"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="thời gian thuê"
         android:layout_margin="4dp"
-        />
+        android:text="thời gian thuê" />
 
     <TextView
         android:id="@+id/dialog_tvTien"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Giá tiền "
         android:layout_margin="4dp"
-        />
+        android:text="Giá tiền " />
 
     <Button
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
         android:id="@+id/dialog_btnHuyDon"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Hủy đơn hàng"
         android:layout_margin="4dp"
-        />
+        android:text="Hủy đơn hàng" />
 </LinearLayout>

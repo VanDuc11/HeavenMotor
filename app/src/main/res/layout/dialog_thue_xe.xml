@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
+    android:padding="10dp"
     android:background="@drawable/bo_goc_custom"
     app:layout_constraintCircleRadius="@dimen/cardview_compat_inset_shadow"
     >
@@ -13,51 +14,94 @@
         android:layout_height="wrap_content"
         android:text="Thuê Xe"
         android:textSize="30dp"
+        android:textStyle="bold"
         android:layout_gravity="center"
         android:gravity="center"/>
 
-    <ImageView
-        android:id="@+id/dialog_thue_xe_img"
-        android:layout_width="210dp"
-        android:layout_height="133dp"
-        app:srcCompat="@drawable/logo"
-        android:layout_gravity="center"
-        android:layout_margin="30dp"/>
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/lottie"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/payment" />
 
     <TextView
         android:id="@+id/textView7"
-        android:layout_width="354dp"
-        android:layout_margin="30dp"
+        android:layout_width="374dp"
+        android:layout_margin="10dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:textSize="17dp"
-
         android:text="Chọn ngày bạn muốn thuê:" />
 
-    <EditText
-        android:id="@+id/dialog_thue_xe_edTungay"
-        android:layout_width="354dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:ems="10"
-        android:hint="Từ ngày"
-        android:inputType="textPersonName"
-        android:minHeight="48dp" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:padding="7dp"
+        android:weightSum="3">
 
-    <EditText
-        android:id="@+id/dialog_thue_xe_edDenngay"
-        android:layout_width="354dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:ems="10"
+        <EditText
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:id="@+id/dialog_thue_xe_edTungay"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:layout_weight="2"
+            android:hint="ĐẾN NGÀY"
+            android:minHeight="48dp"
+            android:textSize="18dp" />
 
-        android:hint="Đến ngày"
-        android:inputType="textPersonName"
-        android:minHeight="48dp" />
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/btntungay_thuexe"
+            android:layout_width="150dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center"
+            android:layout_weight="0"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            app:lottie_rawRes="@raw/tungay" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:padding="7dp"
+        android:weightSum="3">
+
+        <EditText
+            android:inputType="textPersonName"
+            android:ems="10"
+            android:id="@+id/dialog_thue_xe_edDenngay"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:layout_weight="2"
+            android:hint="ĐẾN NGÀY"
+            android:minHeight="48dp"
+            android:textSize="18dp" />
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/btndenngay_thuexe"
+            android:layout_width="150dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center"
+            android:layout_weight="0"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            app:lottie_rawRes="@raw/denngay" />
+
+    </LinearLayout>
 
     <TextView
         android:id="@+id/dialog_thue_xe_tvgia"
-        android:layout_width="354dp"
+        android:layout_width="374dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_margin="20dp"
@@ -67,7 +111,7 @@
 
     <TextView
         android:id="@+id/dialog_thue_xe_tvThongBao"
-        android:layout_width="354dp"
+        android:layout_width="374dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginBottom="10dp"
@@ -76,11 +120,12 @@
         android:textSize="14dp" />
 
     <Button
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
         android:id="@+id/dialog_thue_xe_btnThue"
-        android:layout_width="141dp"
-        android:layout_height="wrap_content"
+        android:layout_width="200dp"
         android:layout_gravity="center"
-         android:gravity="center"
+        android:layout_marginTop="10dp"
+        android:layout_height="wrap_content"
         android:text="Đặt xe " />
 
 </LinearLayout>

@@ -27,6 +27,7 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.example.heaven_motor.MainActivity;
 import com.example.heaven_motor.R;
 import com.example.heaven_motor.database.CategorisDao;
@@ -54,6 +55,7 @@ public class Thue_Xe_Activity extends AppCompatActivity  {
     EditText edtuNgay,edDenNgay;
     Button btnThueXe;
     TextView tvGia;
+    LottieAnimationView loitie_tungay,loitie_denngay;
     List<Vehicle> list;
     VehicleDAO dao1;
 
@@ -101,7 +103,9 @@ public class Thue_Xe_Activity extends AppCompatActivity  {
         edDenNgay = dialog.findViewById(R.id.dialog_thue_xe_edDenngay);
         edtuNgay = dialog.findViewById(R.id.dialog_thue_xe_edTungay);
         btnThueXe = dialog.findViewById(R.id.dialog_thue_xe_btnThue);
-        img = dialog.findViewById(R.id.dialog_thue_xe_img);
+        loitie_tungay = dialog.findViewById(R.id.btntungay_thuexe);
+        loitie_denngay = dialog.findViewById(R.id.btndenngay_thuexe);
+//        img = dialog.findViewById(R.id.dialog_thue_xe_img);
         tvThongBao = dialog.findViewById(R.id.dialog_thue_xe_tvThongBao);
         btnThueXe.setEnabled(false);
         Window window = dialog.getWindow();
@@ -116,13 +120,13 @@ public class Thue_Xe_Activity extends AppCompatActivity  {
 //        windowAttributes.gravity = gravity;
         window.setAttributes(windowAttributes);
 
-        edtuNgay.setOnClickListener(new View.OnClickListener() {
+        loitie_tungay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 chonNgay1();
             }
         });
-        edDenNgay.setOnClickListener(new View.OnClickListener() {
+        loitie_denngay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 chonNgay2();

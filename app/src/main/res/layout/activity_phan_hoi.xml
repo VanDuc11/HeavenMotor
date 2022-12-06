@@ -3,45 +3,58 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="700dp"
-    android:padding="10dp"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg2"
     android:orientation="vertical"
-    android:background="@drawable/img"
+    android:padding="20dp"
     tools:context=".fragment.PhanHoiActivity">
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/lottie"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/feedback" />
+
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:counterMaxLength="500"
-
         >
+
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/edPhanHoi"
             android:layout_width="match_parent"
+            android:layout_height="200dp"
             android:focusable="true"
-            android:hint="Phản hồi của bạn..."
-            android:layout_height="250dp"/>
+            android:hint="Phản hồi của bạn..." />
     </com.google.android.material.textfield.TextInputLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="10dp"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:padding="10dp">
+
         <Button
+            android:id="@+id/btnguiPhanHoi"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Gửi"
-            android:id="@+id/btnguiPhanHoi"
-            android:layout_marginRight="10dp"
             android:layout_marginTop="10dp"
-            android:layout_weight="1"/>
+            android:layout_marginRight="10dp"
+            android:layout_weight="1"
+            android:text="Gửi" />
+
         <Button
             android:id="@+id/btnHuyPhanHoi"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Quay lại"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            android:text="Quay lại" />
     </LinearLayout>
 
 

@@ -18,6 +18,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.example.heaven_motor.R;
 import com.example.heaven_motor.adapter.DoanhThuAdapter;
 import com.example.heaven_motor.database.OrdersDao;
@@ -30,8 +31,9 @@ import java.util.List;
 
 
 public class DoanhThu_Fragment extends Fragment {
-    Button btntungay,btndenngay,btndoanhthu;
+    Button btndoanhthu;
     EditText edtungay,eddenngay;
+    LottieAnimationView btntungay,btndenngay;
     EditText tvdoanhthu;
     SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
     Calendar calendarOne,calendarTwo;

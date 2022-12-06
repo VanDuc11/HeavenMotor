@@ -38,27 +38,32 @@
             android:layout_marginTop="30dp"/>
     </LinearLayout>
     <EditText
+        android:hint="Họ tên"
         android:layout_marginTop="30dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/edTenUser"/>
     <EditText
+        android:hint="Tuổi"
         android:layout_marginTop="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="number"
         android:id="@+id/edTuoiUser"/>
     <EditText
+        android:hint="Căn cước công dân"
         android:layout_marginTop="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/edCCCD"/>
     <EditText
+        android:hint="Số điện thoại"
         android:layout_marginTop="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/edSDT"/>
     <EditText
+        android:hint="Địa chỉ"
         android:layout_marginTop="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -69,6 +74,7 @@
         android:padding="10dp"
         android:orientation="horizontal">
         <Button
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Cập nhật"
@@ -76,12 +82,13 @@
             android:id="@+id/btnCapNhatUser"
             android:layout_weight="1"/>
         <Button
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Hủy"
             android:layout_margin="10dp"
             android:id="@+id/btnHuy"
-            android:layout_weight="1"/>
+            android:layout_weight="1.2"/>
     </LinearLayout>
 
 
