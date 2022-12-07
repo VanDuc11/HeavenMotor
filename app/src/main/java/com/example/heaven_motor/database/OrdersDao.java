@@ -115,10 +115,10 @@ public class OrdersDao {
         return list.get(0);
     }
     @SuppressLint("Range")
-    public int getDate2(){
-        String Sql = "SELECT (timethuc - start_time) as Date FROM Orders";
+    public int getDate2(String id){
+        String Sql = "SELECT (timethuc - start_time) as Date FROM Orders WHERE id=?";
         List<Integer> list = new ArrayList<>();
-        Cursor c = db.rawQuery(Sql,null);
+        Cursor c = db.rawQuery(Sql,new String[]{id});
         while (c.moveToNext()){
             try {
                 list.add(Integer.parseInt(c.getString(c.getColumnIndex("Date"))));
