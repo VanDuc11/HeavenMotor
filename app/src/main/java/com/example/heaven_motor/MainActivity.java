@@ -179,7 +179,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         } else if (id == R.id.topXe) {
             toolbar.setTitle("Top xe được thuê nhiều nhất");
             pager.setAdapter(adapter);
-            pager.setCurrentItem(5);
+            pager.setCurrentItem(10);
         } else if (id == R.id.doanhThu) {
             toolbar.setTitle("Doanh thu");
             pager.setAdapter(adapter);
@@ -234,7 +234,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         adapter.addFragment(new QLyNguoi_Dung_Fragment(), "Quản lý người dùng");
         adapter.addFragment(new Doi_Mat_Khau_Fragment(), "Đổi mật khẩu");
         adapter.addFragment(new HomeFragment(), "Home");
-        adapter.addFragment(new TinTucFragment(), "Tài khoản");
+        adapter.addFragment(new TinTucFragment(), "Tin tức");
         adapter.addFragment(new ToiFragment(), "Tài Khoản");
         adapter.addFragment(new yeu_cau_Fragment(), "Yêu Cầu");
         adapter.addFragment(new LSDH_Fragment(), "LSDH");

@@ -79,7 +79,7 @@ public class ThongBaoAdapter extends ArrayAdapter<Orders> {
                     +" "+ v.getName()+" " + v.getCapacity());
 
             tvThoigian.setText("Thời gian thuê: "+ o.getStart_time() +" - "+ o.getEnd_time());
-
+            String id_dh= String.valueOf(o.getId());
             if (list.get(position).getId() == o.getId() && v.getTrangThai() == 1){
                 btnXuly.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -113,9 +113,7 @@ public class ThongBaoAdapter extends ArrayAdapter<Orders> {
                         if (o.getEnd_time() != o.getTimethuc()){
                             int date = ordersDao.getDate1();
                             if (date !=0){
-//                                Toast.makeText(context, "Bạn đã trả muộn là: " + date, Toast.LENGTH_SHORT).show();
-                                int date2 = ordersDao.getDate2()*v.getPrice();
-                                Toast.makeText(context, "Tổng tiền: " + date2, Toast.LENGTH_SHORT).show();
+                                int date2 = ordersDao.getDate2(id_dh)*v.getPrice();
                                 o.setPhatsinh(date2);
                                 ordersDao.Update(o);
                             }
