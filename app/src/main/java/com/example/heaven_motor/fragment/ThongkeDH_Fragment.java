@@ -16,18 +16,17 @@ import com.example.heaven_motor.R;
 import com.example.heaven_motor.adapter.TopAdapter;
 import com.example.heaven_motor.database.OrdersDao;
 import com.example.heaven_motor.model.Orders;
-import com.example.heaven_motor.model.Top;
 
 import java.util.List;
 
 
-public class TopMuon_Fragment extends Fragment {
+public class ThongkeDH_Fragment extends Fragment {
 
     ListView lv;
     List<Orders> list;
     TopAdapter adapter;
     OrdersDao ordersDao;
-    TextView tvDOntk,tvDonhuy;
+    TextView tvDOntk,tvDonhuy,tvTongDH;
     @SuppressLint("MissingInflatedId")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -39,11 +38,13 @@ public class TopMuon_Fragment extends Fragment {
         lv = v.findViewById(R.id.lvtop);
         tvDOntk = v.findViewById(R.id.tvDontk);
         tvDonhuy = v.findViewById(R.id.tvDonhuy);
+        tvTongDH = v.findViewById(R.id.tvTongDH);
 
 
         loaData();
         tvDOntk.setText("Đơn hàng thành công: "+ordersDao.getCountDonTK());
         tvDonhuy.setText("Đơn hàng bị hủy: "+ordersDao.getCountDonhuy());
+        tvTongDH.setText("Tổng đơn hàng: "+ ordersDao.getCountAllDH());
         return v;
     }
 

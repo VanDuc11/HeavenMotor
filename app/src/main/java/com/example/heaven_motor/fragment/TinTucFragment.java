@@ -36,11 +36,11 @@ public class TinTucFragment extends Fragment {
         new TabLayoutMediator(tabLayout,pager2,(tab, position) -> {
             switch (position) {
                 case 0: {
-                    tab.setText("Doanh thu");
+                    tab.setText("Top xe");
                     break;
                 }
                 case 1: {
-                    tab.setText("TOP");
+                    tab.setText("Thống kê ĐH");
                     break;
                 }
             }

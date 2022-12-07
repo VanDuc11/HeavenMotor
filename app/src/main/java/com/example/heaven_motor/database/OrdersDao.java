@@ -163,6 +163,20 @@ public class OrdersDao {
         return getData(sql,id);
     }
     @SuppressLint("Range")
+    public int getCountAllDH(){
+        String sql = "SELECT COUNT(id) AS soluong FROM Orders ";
+        List<Integer> list = new ArrayList<>();
+        Cursor c = db.rawQuery(sql,null);
+        while (c.moveToNext()){
+            try {
+                list.add(Integer.parseInt(c.getString(c.getColumnIndex("soluong"))));
+            }catch (Exception e){
+                list.add(0);
+            }
+        }
+        return list.get(0);
+    }
+    @SuppressLint("Range")
     public int getCountDonTK(){
         String sql = "SELECT COUNT(id) AS soluong FROM Orders WHERE status = 2";
         List<Integer> list = new ArrayList<>();
@@ -193,29 +207,28 @@ public class OrdersDao {
 
 
 
-//        @SuppressLint("Range")
-//        public List<Orders> getTop(){
-//        String sqlTop ="SELECT vehicle_id,count(vehicle_id) as soluong From Orders  GROUP BY vehicle_id ORDER BY soluong DESC LIMIT 10 ";
-//
-//        List<Top> list = new ArrayList<Top>();
-//        VehicleDAO vehicleDAO = new VehicleDAO(context);
-//        Cursor c =db.rawQuery(sqlTop,null);
-//        while (c.moveToNext()){
-//            Top top = new Top();
-//            @SuppressLint("Range") Vehicle vehicle =vehicleDAO.getID(c.getString(c.getColumnIndex("vehicle_id")));
-//            top.setId(vehicle.getId());
-//            top.setName(vehicle.getName());
-////        top.setBrand(vehicle.getBrand());
-//
-//            top.setCapacity(vehicle.getCapacity());
-//            top.setBKS(vehicle.getBKS());
-//            top.setCategorie_id(vehicle.getCategorie_id());
-//            top.setSoluong(c.getInt(c.getColumnIndex("soluong")));
-////        String s ="ID: " +top.getId() + "\t\t\t\t\t" +" " +top.getName()+ "\t\t\t\t\t" +" "+top.getBrand()+ "\t\t\t\t\t" +" "+top.getCapacity()+ "\t\t\t\t\t" +" "+top.getBKS()+ "\t\t\t\t\t" +" "+top.getSoluong();
-//            list.add(top);
-//        }
-////        return list;
-//    }
+        @SuppressLint("Range")
+        public List<Top> getTop(){
+        String sqlTop ="SELECT vehicle_id,count(vehicle_id) as soluong From Orders  GROUP BY vehicle_id ORDER BY soluong DESC LIMIT 5";
+
+        List<Top> list = new ArrayList<>();
+        VehicleDAO vehicleDAO = new VehicleDAO(context);
+        Cursor c =db.rawQuery(sqlTop,null);
+        while (c.moveToNext()){
+            Top top = new Top();
+            @SuppressLint("Range") Vehicle vehicle =vehicleDAO.getID(c.getString(c.getColumnIndex("vehicle_id")));
+            top.setId(vehicle.getId());
+            top.setName(vehicle.getName());
+        top.setBrand(vehicle.getBrand());
+
+            top.setCapacity(vehicle.getCapacity());
+            top.setBKS(vehicle.getBKS());
+            top.setCategorie_id(vehicle.getCategorie_id());
+            top.setSoluong(c.getInt(c.getColumnIndex("soluong")));
+            list.add(top);
+        }
+        return list;
+    }
 
 
     @SuppressLint("Range")
