@@ -1,22 +1,15 @@
 package com.example.heaven_motor;
 
-import android.app.Activity;
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.drawable.BitmapDrawable;
-import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -41,16 +34,11 @@ import com.example.heaven_motor.fragment.QLyXe_Fragment;
 import com.example.heaven_motor.fragment.QlyDonHang_Fragment;
 import com.example.heaven_motor.fragment.TinTucFragment;
 import com.example.heaven_motor.fragment.ToiFragment;
-import com.example.heaven_motor.fragment.TopMuon_Fragment;
+import com.example.heaven_motor.fragment.ThongkeDH_Fragment;
 import com.example.heaven_motor.fragment.yeu_cau_Fragment;
 import com.example.heaven_motor.model.Users;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.navigation.NavigationBarView;
 import com.google.android.material.navigation.NavigationView;
-
-import java.io.ByteArrayOutputStream;
-import java.io.FileNotFoundException;
-import java.io.InputStream;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, BottomNavigationView.OnNavigationItemSelectedListener {
     DrawerLayout drawerLayout;
@@ -209,7 +197,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
             startActivity(new Intent(MainActivity.this, Login_MainActivity2.class));
         } else if (id == R.id.LSDH) {
-            toolbar.setTitle("Lịch sử đơn hàng");
+            toolbar.setTitle("Đơn hàng của bạn");
             pager.setAdapter(adapter);
             pager.setCurrentItem(13);
         } else if (id == R.id.phanHoi) {
@@ -229,7 +217,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         adapter.addFragment(new QlyDonHang_Fragment(), "Quản lý đơn hàng");
         adapter.addFragment(new DatHang_Fragment(), "Đặt hàng");
         adapter.addFragment(new LSDonHang_Fragment(), "Những đơn đã đặt");
-        adapter.addFragment(new TopMuon_Fragment(), "Top xe được thuê nhiều nhất");
+        adapter.addFragment(new ThongkeDH_Fragment(), "Top xe được thuê nhiều nhất");
         adapter.addFragment(new DoanhThu_Fragment(), "Doanh thu");
         adapter.addFragment(new QLyNguoi_Dung_Fragment(), "Quản lý người dùng");
         adapter.addFragment(new Doi_Mat_Khau_Fragment(), "Đổi mật khẩu");

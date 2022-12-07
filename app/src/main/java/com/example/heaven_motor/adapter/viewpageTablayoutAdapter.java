@@ -1,16 +1,11 @@
 package com.example.heaven_motor.adapter;
 
-import android.widget.Switch;
-
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentStatePagerAdapter;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
-import com.example.heaven_motor.fragment.DoanhThu_Fragment;
-import com.example.heaven_motor.fragment.TopMuon_Fragment;
+import com.example.heaven_motor.fragment.ThongkeDH_Fragment;
+import com.example.heaven_motor.fragment.Top_Fragment;
 
 public class viewpageTablayoutAdapter extends FragmentStateAdapter {
 
@@ -24,12 +19,12 @@ public class viewpageTablayoutAdapter extends FragmentStateAdapter {
     public Fragment createFragment(int position) {
         switch (position){
             case 0:
-                return new DoanhThu_Fragment();
+                return new Top_Fragment();
 
             case 1:
-                return new TopMuon_Fragment();
+                return new ThongkeDH_Fragment();
             default:
-                return new DoanhThu_Fragment();
+                return new Top_Fragment();
         }
     }
 
