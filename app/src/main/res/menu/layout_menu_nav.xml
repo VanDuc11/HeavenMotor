@@ -33,7 +33,7 @@
         <menu>
             <item android:id="@+id/topXe"
                 android:icon="@drawable/ic_baseline_bar_chart_24"
-                android:title="Top xe mượn nhiều nhất"/>
+                android:title="Thống kê đơn hàng"/>
 
             <item android:id="@+id/doanhThu"
                 android:icon="@drawable/ic_baseline_attach_money_24"

@@ -61,7 +61,9 @@ public class List_LSDH_Adapter extends RecyclerView.Adapter<List_LSDH_Adapter.Li
         String order_id = String.valueOf(o.getId());
         int tien = dao.getPrice(order_id);
         holder.tvPrice.setText("Tổng tiền: " + tien + " đ");
-        if (o.getStatus()== 1){
+        if (o.getStatus() == 0){
+            holder.tvTTDH.setText("Tình trạng: Đang xử lý");
+        }else if (o.getStatus()== 1){
             holder.tvTTDH.setText("Tình trạng: Đơn hàng bị hủy");
         }else if (o.getStatus() == 2){
             holder.tvTTDH.setText("Tình trạng:  Đơn hàng thành công");
