@@ -28,12 +28,12 @@
 
     <TextView
         android:id="@+id/textView7"
-        android:layout_width="374dp"
-        android:layout_margin="10dp"
+        android:layout_width="313dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:textSize="17dp"
-        android:text="Chọn ngày bạn muốn thuê:" />
+        android:layout_margin="10dp"
+        android:text="Chọn ngày bạn muốn thuê:"
+        android:textSize="17dp" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -101,7 +101,7 @@
 
     <TextView
         android:id="@+id/dialog_thue_xe_tvgia"
-        android:layout_width="374dp"
+        android:layout_width="317dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_margin="20dp"
@@ -111,7 +111,7 @@
 
     <TextView
         android:id="@+id/dialog_thue_xe_tvThongBao"
-        android:layout_width="374dp"
+        android:layout_width="313dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginBottom="10dp"

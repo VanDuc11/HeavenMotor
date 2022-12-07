@@ -155,7 +155,6 @@ public class Thue_Xe_Activity extends AppCompatActivity  {
                 String date1 = edtuNgay.getText().toString();
                 String date2 = edDenNgay.getText().toString();
                 List<Orders> list1 = ordersDao.getAll();
-                Toast.makeText(context, ""+list1.size(), Toast.LENGTH_SHORT).show();
                 btnThueXe.setEnabled(true);
                 for (int i = 0; i <list1.size(); i ++){
 
