@@ -37,7 +37,6 @@ public class DonHangCB_Fragment extends Fragment {
     ListView recyclerView;
     OrdersDao dao;
     List<Orders> list;
-    LinearLayoutManager linearLayoutManager;
     LSDonHangAdapter adapter;
     Dialog dialog;
     TextView tvid , tvUser, tvxe,tvloai,tvdate,tvtien;

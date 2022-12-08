@@ -1,12 +1,8 @@
-
 package com.example.heaven_motor;
 
-import android.Manifest;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -18,18 +14,18 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.core.app.ActivityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.viewpager.widget.ViewPager;
+import androidx.fragment.app.FragmentManager;
+
 
 import com.example.heaven_motor.adapter.ViewpageAdapter;
 import com.example.heaven_motor.database.UserDAO;
 import com.example.heaven_motor.fragment.DatHang_Fragment;
 import com.example.heaven_motor.fragment.DoanhThu_Fragment;
 import com.example.heaven_motor.fragment.Doi_Mat_Khau_Fragment;
+import com.example.heaven_motor.fragment.DonHangCB_Fragment;
 import com.example.heaven_motor.fragment.HomeFragment;
 import com.example.heaven_motor.fragment.LSDH_Fragment;
-import com.example.heaven_motor.fragment.DonHangCB_Fragment;
 import com.example.heaven_motor.fragment.PhanHoiFragment;
 import com.example.heaven_motor.fragment.QLyLoaiXe_Fragment;
 import com.example.heaven_motor.fragment.QLyNguoi_Dung_Fragment;
@@ -46,9 +42,6 @@ import com.google.android.material.navigation.NavigationView;
 public class MainActivity extends AppCompatActivity {
     DrawerLayout drawerLayout;
     Toolbar toolbar;
-
-    NavigationView navigationView;
-
     FragmentManager fragmentManager;
     BottomNavigationView bottomNavigationView;
     ViewpageAdapter adapter;
@@ -57,7 +50,9 @@ public class MainActivity extends AppCompatActivity {
     ImageView imgUser;
     UserDAO userDAO;
     View mHeaderView;
-
+    HomeFragment homeFragment = new HomeFragment();
+    ToiFragment toiFragment = new ToiFragment();
+    TinTucFragment tinTucFragment = new TinTucFragment();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,20 +89,6 @@ public class MainActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-
-
-
-
-        pager = findViewById(R.id.pagerTrangchu);
-        addFragment(pager);
-        navigationView.setNavigationItemSelectedListener(this);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar,
-                R.string.openDWR, R.string.closeDWR);
-        drawerLayout.addDrawerListener(toggle);
-        toggle.syncState();
-        onContextMenuClosed();
-
-
         Intent intent = getIntent();
         String user = intent.getStringExtra("user");
 
@@ -138,9 +119,6 @@ public class MainActivity extends AppCompatActivity {
 
         }
 
-        //imgUser.set
-        //Log.d("zzzz", name);
-
 
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar,
@@ -150,24 +128,8 @@ public class MainActivity extends AppCompatActivity {
         onContextMenuClosed();
 
 
-    public void addFragment(ViewPager viewPager) {
-        
-
-        QLyLoaiXe_Fragment frag01 = new QLyLoaiXe_Fragment();
-        QLyXe_Fragment frag02 = new QLyXe_Fragment();
-        QlyDonHang_Fragment frag03 = new QlyDonHang_Fragment();
-        DatHang_Fragment frag04 = new DatHang_Fragment();
-        LSDonHang_Fragment frag05 = new LSDonHang_Fragment();
-        ThongkeDH_Fragment frag06 = new ThongkeDH_Fragment();
-        DoanhThu_Fragment frag07 = new DoanhThu_Fragment();
-        QLyNguoi_Dung_Fragment frag08 = new QLyNguoi_Dung_Fragment();
-        Doi_Mat_Khau_Fragment frag09 = new Doi_Mat_Khau_Fragment();
         HomeFragment frag10 = new HomeFragment();
-        TinTucFragment frag11 = new TinTucFragment();
-        ToiFragment frag12 = new ToiFragment();
-        yeu_cau_Fragment frag13 = new yeu_cau_Fragment();
-        LSDH_Fragment frag14 = new LSDH_Fragment();
-        PhanHoiFragment frag15 = new PhanHoiFragment();
+
 
         fragmentManager.beginTransaction().replace(R.id.container_fragMain, frag10).commit();
 
@@ -222,7 +184,7 @@ public class MainActivity extends AppCompatActivity {
                         setTitle("Những đơn đã đặt");
                         Toast.makeText(MainActivity.this, "Những đơn đã đặt", Toast.LENGTH_SHORT).show();
 
-                        LSDonHang_Fragment lsDonHang_fragment = new LSDonHang_Fragment();
+                        DonHangCB_Fragment lsDonHang_fragment = new DonHangCB_Fragment();
                         manager.beginTransaction()
                                 .replace(R.id.container_fragMain, lsDonHang_fragment)
                                 .commit();
@@ -335,43 +297,6 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public boolean phanQuyen(){
-        if (Build.VERSION.SDK_INT >= 23){
-            if (checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE)
-                    == PackageManager.PERMISSION_GRANTED &&
-                    checkSelfPermission(Manifest.permission.CAMERA)
-                            == PackageManager.PERMISSION_GRANTED &&
-                    checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)
-                            == PackageManager.PERMISSION_GRANTED &&
-                    checkSelfPermission(Manifest.permission.CALL_PHONE)
-                            == PackageManager.PERMISSION_GRANTED&&
-                    checkSelfPermission(Manifest.permission.INTERNET)
-                            ==PackageManager.PERMISSION_GRANTED){
-
-                return true;
-            }else {
-                ActivityCompat.requestPermissions(this,
-                        new String[]{Manifest.permission.READ_EXTERNAL_STORAGE,
-                                    Manifest.permission.WRITE_EXTERNAL_STORAGE,
-                                    Manifest.permission.CAMERA,
-                                    Manifest.permission.INTERNET,
-                                    Manifest.permission.CALL_PHONE},1);
-            }
-        }
-        return true;
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-        phanQuyen();
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        onStart();
     private void onContextMenuClosed() {
-
     }
 }
