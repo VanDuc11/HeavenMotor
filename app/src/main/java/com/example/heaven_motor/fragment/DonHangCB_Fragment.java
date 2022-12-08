@@ -3,7 +3,6 @@ package com.example.heaven_motor.fragment;
 import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -11,7 +10,6 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,14 +20,12 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.heaven_motor.R;
 import com.example.heaven_motor.adapter.LSDonHangAdapter;
 import com.example.heaven_motor.database.OrdersDao;
 import com.example.heaven_motor.database.UserDAO;
 import com.example.heaven_motor.database.VehicleDAO;
-import com.example.heaven_motor.model.Categoris;
 import com.example.heaven_motor.model.Orders;
 import com.example.heaven_motor.model.Users;
 import com.example.heaven_motor.model.Vehicle;
@@ -37,7 +33,7 @@ import com.example.heaven_motor.model.Vehicle;
 import java.util.List;
 
 
-public class LSDonHang_Fragment extends Fragment {
+public class DonHangCB_Fragment extends Fragment {
     ListView recyclerView;
     OrdersDao dao;
     List<Orders> list;
@@ -59,7 +55,7 @@ public class LSDonHang_Fragment extends Fragment {
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
                 Orders o = list.get(position);
                 OpenDialogInsert(o);
-                return true;
+                return false;
             }
         });
         return v;
@@ -93,9 +89,9 @@ public class LSDonHang_Fragment extends Fragment {
 
         tvid.setText("Mã đơn hàng:" + o.getId());
         tvUser.setText("Người thuê: " +o.getUser_id() + " "+ s.getName());
-        tvxe.setText(v.getBrand() +" "+ v.getName() +" " + v.getCapacity());
+        tvxe.setText("Tên xe: "+v.getBrand() +" "+ v.getName() +" " + v.getCapacity());
         tvdate.setText("Ngày thuê: " + o.getStart_time()+ " - " +o.getEnd_time());
-        tvtien.setText("Tổng tiền:" + o.getTotal());
+        tvtien.setText("Tổng tiền: " + o.getTotal()+"đ");
         btnHuydon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

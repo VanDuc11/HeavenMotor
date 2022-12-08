@@ -12,7 +12,9 @@ import android.widget.Toast;
 
 import com.example.heaven_motor.R;
 import com.example.heaven_motor.adapter.PhanHoiAdapter;
+import com.example.heaven_motor.database.FeedbackDao;
 import com.example.heaven_motor.database.UserDAO;
+import com.example.heaven_motor.model.Feedback;
 import com.example.heaven_motor.model.Users;
 
 import java.util.ArrayList;
@@ -21,10 +23,8 @@ import java.util.List;
 public class PhanHoiActivity extends AppCompatActivity {
     EditText editText;
     Button gui, huy;
-    UserDAO userDAO;
-    Users users;
-    List<Users> list;
-    String ten;
+    FeedbackDao feedbackDao;
+    Feedback f;
 
 
     @SuppressLint("MissingInflatedId")
@@ -35,9 +35,8 @@ public class PhanHoiActivity extends AppCompatActivity {
         editText = findViewById(R.id.edPhanHoi);
         gui = findViewById(R.id.btnguiPhanHoi);
         huy = findViewById(R.id.btnHuyPhanHoi);
-        userDAO = new UserDAO(getApplicationContext());
-        users = new Users();
-
+        feedbackDao = new FeedbackDao(this);
+        f = new Feedback();
 
 
         huy.setOnClickListener(new View.OnClickListener() {
@@ -57,9 +56,10 @@ public class PhanHoiActivity extends AppCompatActivity {
                     if (getIntent().hasExtra("user")) {
                         maUser = intent.getStringExtra("user");
                     }
-                    users.setName(maUser);
-                    users.setPhanhoi(editText.getText().toString());
-                    if (userDAO.insert(users) > 0) {
+                    f.setUser_id(maUser);
+                    f.setPhanhoi(editText.getText().toString());
+                    int kq = feedbackDao.Insert(f);
+                    if (kq > 0) {
                         Toast.makeText(PhanHoiActivity.this, "Gửi phản hồi thành công", Toast.LENGTH_SHORT).show();
                         finish();
                     } else {

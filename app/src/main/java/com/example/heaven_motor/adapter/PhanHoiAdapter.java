@@ -14,17 +14,18 @@ import androidx.annotation.Nullable;
 
 import com.example.heaven_motor.R;
 import com.example.heaven_motor.database.UserDAO;
+import com.example.heaven_motor.model.Feedback;
 import com.example.heaven_motor.model.Users;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class PhanHoiAdapter extends BaseAdapter {
-    List<Users> list;
+    List<Feedback> list;
     Context context;
     TextView kh,nd;
 
-    public PhanHoiAdapter(List<Users> list, Context context) {
+    public PhanHoiAdapter(List<Feedback> list, Context context) {
         this.list = list;
         this.context = context;
     }
@@ -36,7 +37,7 @@ public class PhanHoiAdapter extends BaseAdapter {
 
     @Override
     public Object getItem(int position) {
-        Users obj = list.get(position);
+        Feedback obj = list.get(position);
         return obj;
     }
 
@@ -53,13 +54,15 @@ public class PhanHoiAdapter extends BaseAdapter {
                     Context.LAYOUT_INFLATER_SERVICE);
             itemView = inflater.inflate(R.layout.phan_hoi_item, null);
         }
-        Users obj =  list.get(position);
+        Feedback obj =  list.get(position);
+        UserDAO dao = new UserDAO(context);
+        Users u = dao.getID(obj.getUser_id());
         if (obj!=null){
 
             nd=  itemView.findViewById(R.id.tvNoiDungPhanHoi);
             nd.setText("Nội dung : "+ obj.getPhanhoi());
             kh = itemView.findViewById(R.id.tvThongTinNguoiPhanHoi);
-            kh.setText(""+obj.getName());
+            kh.setText(""+u.getName());
         }
 
         return itemView;

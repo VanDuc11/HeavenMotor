@@ -1,8 +1,11 @@
 package com.example.heaven_motor;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -13,10 +16,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.ActivityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager.widget.ViewPager;
 
 import com.example.heaven_motor.adapter.ViewpageAdapter;
@@ -26,7 +27,7 @@ import com.example.heaven_motor.fragment.DoanhThu_Fragment;
 import com.example.heaven_motor.fragment.Doi_Mat_Khau_Fragment;
 import com.example.heaven_motor.fragment.HomeFragment;
 import com.example.heaven_motor.fragment.LSDH_Fragment;
-import com.example.heaven_motor.fragment.LSDonHang_Fragment;
+import com.example.heaven_motor.fragment.DonHangCB_Fragment;
 import com.example.heaven_motor.fragment.PhanHoiFragment;
 import com.example.heaven_motor.fragment.QLyLoaiXe_Fragment;
 import com.example.heaven_motor.fragment.QLyNguoi_Dung_Fragment;
@@ -44,16 +45,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     DrawerLayout drawerLayout;
     Toolbar toolbar;
     NavigationView navigationView;
-    BottomNavigationView bottomNavigationView;
     ViewPager pager;
     ViewpageAdapter adapter;
     TextView nameUser;
     ImageView imgUser;
     UserDAO userDAO;
     View mHeaderView;
-    HomeFragment homeFragment = new HomeFragment();
-    ToiFragment toiFragment = new ToiFragment();
-    TinTucFragment tinTucFragment = new TinTucFragment();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,8 +86,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
 
 
-        //imgUser.set
-        //Log.d("zzzz", name);
+
 
 
         pager = findViewById(R.id.pagerTrangchu);
@@ -160,12 +157,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             pager.setAdapter(adapter);
             pager.setCurrentItem(3);
         } else if (id == R.id.DH) {
-            toolbar.setTitle("Những đơn đã đặt");
+            toolbar.setTitle("Đơn hàng đang đặt");
             pager.setAdapter(adapter);
             pager.setCurrentItem(4);
 
         } else if (id == R.id.topXe) {
-            toolbar.setTitle("Top xe được thuê nhiều nhất");
+            toolbar.setTitle("Thống kê");
             pager.setAdapter(adapter);
             pager.setCurrentItem(10);
         } else if (id == R.id.doanhThu) {
@@ -197,7 +194,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
             startActivity(new Intent(MainActivity.this, Login_MainActivity2.class));
         } else if (id == R.id.LSDH) {
-            toolbar.setTitle("Đơn hàng của bạn");
+            toolbar.setTitle("Lịch sử đơn hàng");
             pager.setAdapter(adapter);
             pager.setCurrentItem(13);
         } else if (id == R.id.phanHoi) {
@@ -216,7 +213,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         adapter.addFragment(new QLyXe_Fragment(), "Quản lý xe");
         adapter.addFragment(new QlyDonHang_Fragment(), "Quản lý đơn hàng");
         adapter.addFragment(new DatHang_Fragment(), "Đặt hàng");
-        adapter.addFragment(new LSDonHang_Fragment(), "Những đơn đã đặt");
+        adapter.addFragment(new DonHangCB_Fragment(), "Những đơn đã đặt");
         adapter.addFragment(new ThongkeDH_Fragment(), "Top xe được thuê nhiều nhất");
         adapter.addFragment(new DoanhThu_Fragment(), "Doanh thu");
         adapter.addFragment(new QLyNguoi_Dung_Fragment(), "Quản lý người dùng");
@@ -241,11 +238,41 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
     }
 
-    private void rp(Fragment fragment) {
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.pagerTrangchu, fragment);
-        fragmentTransaction.commit();
+    public boolean phanQuyen(){
+        if (Build.VERSION.SDK_INT >= 23){
+            if (checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE)
+                    == PackageManager.PERMISSION_GRANTED &&
+                    checkSelfPermission(Manifest.permission.CAMERA)
+                            == PackageManager.PERMISSION_GRANTED &&
+                    checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                            == PackageManager.PERMISSION_GRANTED &&
+                    checkSelfPermission(Manifest.permission.CALL_PHONE)
+                            == PackageManager.PERMISSION_GRANTED&&
+                    checkSelfPermission(Manifest.permission.INTERNET)
+                            ==PackageManager.PERMISSION_GRANTED){
 
+                return true;
+            }else {
+                ActivityCompat.requestPermissions(this,
+                        new String[]{Manifest.permission.READ_EXTERNAL_STORAGE,
+                                    Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                                    Manifest.permission.CAMERA,
+                                    Manifest.permission.INTERNET,
+                                    Manifest.permission.CALL_PHONE},1);
+            }
+        }
+        return true;
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        phanQuyen();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        onStart();
     }
 }

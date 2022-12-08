@@ -14,7 +14,9 @@ import android.widget.ListView;
 import com.example.heaven_motor.R;
 import com.example.heaven_motor.adapter.PhanHoiAdapter;
 import com.example.heaven_motor.adapter.ThongBaoAdapter;
+import com.example.heaven_motor.database.FeedbackDao;
 import com.example.heaven_motor.database.UserDAO;
+import com.example.heaven_motor.model.Feedback;
 import com.example.heaven_motor.model.Users;
 
 import java.util.List;
@@ -23,24 +25,8 @@ import java.util.List;
 public class PhanHoiFragment extends Fragment {
     ListView listView;
     PhanHoiAdapter phanHoiAdapter;
-    UserDAO userDAO;
-    List<Users> listPhanHoi;
-
-
-    public PhanHoiFragment() {
-        // Required empty public constructor
-    }
-
-    public static PhanHoiFragment newInstance() {
-        PhanHoiFragment fragment = new PhanHoiFragment();
-        Bundle args = new Bundle();
-        return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
+    FeedbackDao feedbackDAO;
+    List<Feedback> listPhanHoi;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -52,11 +38,11 @@ public class PhanHoiFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        userDAO  = new UserDAO(getContext());
+        feedbackDAO  = new FeedbackDao(getContext());
         listView = view.findViewById(R.id.frag_phan_hoi);
     }
     public void loadData(){
-        listPhanHoi = userDAO.getAll();
+        listPhanHoi = feedbackDAO.getAll();
         phanHoiAdapter = new PhanHoiAdapter(listPhanHoi,getContext());
         listView.setAdapter(phanHoiAdapter);
     }

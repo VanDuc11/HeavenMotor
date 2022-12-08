@@ -21,14 +21,3 @@ public class Data_SQL {
 }
 
 
-//
-//"(id text PRIMARY KEY,"+
-//        "name text,"+
-//        "imager blob,"+
-//        "BKS text,"+
-//        "capacity integer,"+
-//        "status integer,"+
-//        "price integer,"+
-//        "brand text,"+
-//        "year integer,"+
-//        "categorie_id integer REFERENCES Categories(id))";

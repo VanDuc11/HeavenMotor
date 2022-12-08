@@ -5,75 +5,116 @@
     android:layout_height="wrap_content"
     app:cardUseCompatPadding="true"
     app:cardElevation="4dp"
+    android:padding="50dp"
     >
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="10dp"
-        android:orientation="horizontal">
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/textView22"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="Chi tiết đơn hàng"
+            android:textColor="@color/red"
+            android:textSize="30dp"
+            android:textStyle="bold" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-
-
             <TextView
-                android:id="@+id/item_list_dh_tvid"
+                android:id="@+id/item_qldh_tvid"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:text="mã đơn hàng"
                 android:textStyle="bold"
-               />
+                />
 
             <TextView
-                android:id="@+id/item_list_dh_tvUser_id"
+                android:id="@+id/item_qldh_tvUser_id"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:textStyle="bold"
                 android:text="user_name" />
 
+            <TextView
+                android:id="@+id/item_qldh_tvDiachi"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
 
+                android:text="Địa chỉ" />
 
             <TextView
-                android:id="@+id/item_list_dh_tvmaXe"
+                android:id="@+id/item_qldh_tvSDT"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="SDT" />
+
+            <TextView
+                android:id="@+id/item_qldh_tvmaXe"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
 
                 android:text="mã xe + ten xe" />
+
             <TextView
-                android:id="@+id/item_list_dh_tvLoai"
+                android:id="@+id/item_qldh_tvLoai"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:text="Loại xe" />
+
             <TextView
-                android:id="@+id/item_list_dh_tvThoigian"
+                android:id="@+id/item_qldh_tvThoigian"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:text="thời gian" />
+
             <TextView
-                android:id="@+id/item_list_dh_tvPrice"
+                android:id="@+id/item_qldh_tvTien"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="Tiền thuê" />
+
+            <TextView
+                android:id="@+id/item_qldh_tvphatSinh"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="Phát sinh" />
+
+            <TextView
+                android:id="@+id/item_qldh_tvtongtien"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:textColor="@color/red"
-                android:text="Tổng tiền:" />
+                android:text="Tổng tiền" />
 
             <TextView
-                android:id="@+id/item_list_dh_tvTT"
+                android:id="@+id/item_qldh_tvTT"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:text="Tình trạng"
                 android:textStyle="italic"
-                android:textColor="@color/red"/>
+                android:textColor="@color/red"
+                android:text="Trạng thái: Đang xử lý" />
 
 
         </LinearLayout>

@@ -6,39 +6,11 @@ public class Orders {
     private String vehicle_id;
     private String start_time;
     private String end_time,timethuc;
-    private int total;
-    private int phatsinh;
+    private double total;
+    private double phatsinh;
     private int status;
 
     public Orders() {
-    }
-
-    public Orders(int id, String user_id, String vehicle_id, String start_time, String end_time, String timethuc, int total, int phatsinh, int status) {
-        this.id = id;
-        this.user_id = user_id;
-        this.vehicle_id = vehicle_id;
-        this.start_time = start_time;
-        this.end_time = end_time;
-        this.timethuc = timethuc;
-        this.total = total;
-        this.phatsinh = phatsinh;
-        this.status = status;
-    }
-
-    public int getStatus() {
-        return status;
-    }
-
-    public void setStatus(int status) {
-        this.status = status;
-    }
-
-    public String getTimethuc() {
-        return timethuc;
-    }
-
-    public void setTimethuc(String timethuc) {
-        this.timethuc = timethuc;
     }
 
     public int getId() {
@@ -81,21 +53,35 @@ public class Orders {
         this.end_time = end_time;
     }
 
+    public String getTimethuc() {
+        return timethuc;
+    }
 
+    public void setTimethuc(String timethuc) {
+        this.timethuc = timethuc;
+    }
 
-    public int getTotal() {
+    public double getTotal() {
         return total;
     }
 
-    public void setTotal(int total) {
+    public void setTotal(double total) {
         this.total = total;
     }
 
-    public int getPhatsinh() {
+    public double getPhatsinh() {
         return phatsinh;
     }
 
-    public void setPhatsinh(int phatsinh) {
+    public void setPhatsinh(double phatsinh) {
         this.phatsinh = phatsinh;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
     }
 }

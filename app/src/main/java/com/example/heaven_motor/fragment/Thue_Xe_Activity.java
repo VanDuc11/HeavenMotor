@@ -23,26 +23,20 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.airbnb.lottie.LottieAnimationView;
-import com.example.heaven_motor.MainActivity;
 import com.example.heaven_motor.R;
 import com.example.heaven_motor.database.CategorisDao;
 import com.example.heaven_motor.database.OrdersDao;
-import com.example.heaven_motor.database.ThongKeDao;
 import com.example.heaven_motor.database.VehicleDAO;
 import com.example.heaven_motor.model.Categoris;
 import com.example.heaven_motor.model.Orders;
 import com.example.heaven_motor.model.Vehicle;
 
-import java.sql.Date;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.GregorianCalendar;
 import java.util.List;
 
 public class Thue_Xe_Activity extends AppCompatActivity  {
@@ -105,7 +99,6 @@ public class Thue_Xe_Activity extends AppCompatActivity  {
         btnThueXe = dialog.findViewById(R.id.dialog_thue_xe_btnThue);
         loitie_tungay = dialog.findViewById(R.id.btntungay_thuexe);
         loitie_denngay = dialog.findViewById(R.id.btndenngay_thuexe);
-//        img = dialog.findViewById(R.id.dialog_thue_xe_img);
         tvThongBao = dialog.findViewById(R.id.dialog_thue_xe_tvThongBao);
         btnThueXe.setEnabled(false);
         Window window = dialog.getWindow();
@@ -181,6 +174,7 @@ public class Thue_Xe_Activity extends AppCompatActivity  {
             public void onClick(View view) {
                 dialogInsert();
                 dialog.dismiss();
+                finish();
             }
 
 

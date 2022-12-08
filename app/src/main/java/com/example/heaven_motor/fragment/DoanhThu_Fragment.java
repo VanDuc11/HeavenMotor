@@ -38,7 +38,6 @@ public class DoanhThu_Fragment extends Fragment {
     SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
     Calendar calendarOne,calendarTwo;
     ListView view;
-    LinearLayoutManager linearLayoutManager;
     OrdersDao dao;
     DoanhThuAdapter adapter;
     List<Orders> list;

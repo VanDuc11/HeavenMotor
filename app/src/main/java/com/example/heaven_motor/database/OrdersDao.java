@@ -18,7 +18,6 @@ public class OrdersDao {
     SQL sqLite;
     SQLiteDatabase db;
     Context context;
-    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
     public OrdersDao(Context context){
         this.context = context;
         sqLite = new SQL(context);
@@ -67,10 +66,10 @@ public class OrdersDao {
             o.setVehicle_id(c.getString(c.getColumnIndex("vehicle_id")));
             o.setStart_time(c.getString(c.getColumnIndex("start_time")));
             o.setEnd_time(c.getString(c.getColumnIndex("end_time")));
-            o.setTotal(c.getInt(c.getColumnIndex("total")));
+            o.setTotal(c.getDouble(c.getColumnIndex("total")));
             o.setStatus(c.getInt(c.getColumnIndex("status")));
             o.setTimethuc(c.getString(c.getColumnIndex("timethuc")));
-            o.setPhatsinh(Integer.parseInt(c.getString(c.getColumnIndex("phatsinh"))));
+            o.setPhatsinh(c.getDouble(c.getColumnIndex("phatsinh")));
 
             list.add(o);
         }
@@ -116,7 +115,7 @@ public class OrdersDao {
     }
     @SuppressLint("Range")
     public int getDate2(String id){
-        String Sql = "SELECT (timethuc - start_time) as Date FROM Orders WHERE id=?";
+        String Sql = "SELECT (timethuc - end_time) as Date FROM Orders WHERE id=?";
         List<Integer> list = new ArrayList<>();
         Cursor c = db.rawQuery(Sql,new String[]{id});
         while (c.moveToNext()){
@@ -131,7 +130,7 @@ public class OrdersDao {
         return list.get(0);
     }
     public List<Orders> getAll(){
-        String sql ="SELECT * FROM Orders";
+        String sql ="SELECT * FROM Orders ORDER BY id  DESC";
         return getData(sql);
     }
     public List<Orders> getAll1(){
@@ -159,7 +158,7 @@ public class OrdersDao {
         return getData(sql,id);
     }
     public List<Orders> getAllDH(String id){
-        String sql ="SELECT * FROM Orders WHERE user_id=?";
+        String sql ="SELECT * FROM Orders WHERE user_id=? ORDER BY id DESC";
         return getData(sql,id);
     }
     @SuppressLint("Range")
