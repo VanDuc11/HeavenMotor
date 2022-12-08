@@ -8,7 +8,7 @@ import androidx.annotation.Nullable;
 
 public class SQL extends SQLiteOpenHelper {
     public SQL(@Nullable Context context) {
-        super(context, "database.db", null, 1);
+        super(context, "database.db", null, 5);
     }
 
 
@@ -49,11 +49,13 @@ public class SQL extends SQLiteOpenHelper {
             "start_time date ," +
             "end_time date," +
             "status integer," +
-            " total integer," +
-            "phatsinh integer," +
+            " total real," +
+            "phatsinh real," +
             "timethuc date);";
-
-
+    public static final String Table_Feedback = "CREATE TABLE Feedback" +
+            "(id integer PRIMARY KEY AUTOINCREMENT," +
+            "user_id text REFERENCES Users(id)," +
+            " phanhoi text);";
 
 
 
@@ -63,6 +65,7 @@ public class SQL extends SQLiteOpenHelper {
         db.execSQL(Table_Categories);
         db.execSQL(Table_Vehicle);
         db.execSQL(Table_Orders);
+        db.execSQL(Table_Feedback);
 
         //inser data
         db.execSQL(Data_SQL.INSERT_User);
@@ -77,7 +80,7 @@ public class SQL extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE if EXISTS Categories");
         db.execSQL("DROP TABLE if EXISTS Vehicle");
         db.execSQL("DROP TABLE if EXISTS Orders");
-
+        db.execSQL("DROP TABLE if EXISTS Feedback");
         onCreate(db);
     }
 

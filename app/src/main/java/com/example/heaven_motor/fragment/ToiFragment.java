@@ -155,7 +155,7 @@ public class ToiFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent1 = new Intent(getActivity(), PhanHoiActivity.class);
-                intent1.putExtra("user", obj.getName());
+                intent1.putExtra("user", obj.getId());
                 startActivity(intent1);
             }
         });

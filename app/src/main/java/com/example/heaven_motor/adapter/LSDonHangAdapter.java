@@ -15,27 +15,30 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.heaven_motor.R;
 import com.example.heaven_motor.database.OrdersDao;
 import com.example.heaven_motor.database.VehicleDAO;
-import com.example.heaven_motor.fragment.LSDonHang_Fragment;
+import com.example.heaven_motor.fragment.DonHangCB_Fragment;
 import com.example.heaven_motor.model.Orders;
 import com.example.heaven_motor.model.Vehicle;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 public class LSDonHangAdapter extends ArrayAdapter<Orders> {
     List<Orders> list;
     Context context;
-    LSDonHang_Fragment fragment;
+    DonHangCB_Fragment fragment;
     ImageView img;
     TextView tvTenSp,tvMa,tvGia,tvTT;
     Button btnXuly;
+    Calendar calendar;
+    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 
-
-    public LSDonHangAdapter(@NonNull Context context, LSDonHang_Fragment fragment, List<Orders> list) {
+    public LSDonHangAdapter(@NonNull Context context, DonHangCB_Fragment fragment, List<Orders> list) {
         super(context, 0, list);
         this.context = context;
         this.fragment = fragment;
@@ -73,7 +76,7 @@ public class LSDonHangAdapter extends ArrayAdapter<Orders> {
             tvGia.setText(ordersDao.getDate()+ " x " + v.getPrice() +" Tổng thanh toán: "+ o.getTotal());
 
 
-
+            String id_dh= String.valueOf(o.getId());
             if (v.getTrangThai() == 1) {
                 tvTT.setTextColor(Color.RED);
                 tvTT.setText("Đang xử lý");
@@ -86,12 +89,31 @@ public class LSDonHangAdapter extends ArrayAdapter<Orders> {
                         dao.Update(v);
                         tvTT.setText("Đang xử lý");
                         btnXuly.setEnabled(false);
+                        calendar = Calendar.getInstance();
+                        o.setTimethuc(sdf.format(calendar.getTime()));
+                        ordersDao.Update(o);
+                        long a = Date.parse(o.getTimethuc());
+                        long b = Date.parse(o.getEnd_time());
+                        if ( a > b){
+                            int date = ordersDao.getDate1();
+                            if (date !=0){
+                                double date2 = ordersDao.getDate2(id_dh)*(v.getPrice()*1.5);
+                                o.setPhatsinh(date2);
+                                ordersDao.Update(o);
+                                Toast.makeText(context, "Đơn hàng này đã trả muộn: " + ordersDao.getDate2(id_dh) + " ngày", Toast.LENGTH_SHORT).show();
+                            }
+
+                        }
                     }
                 });
                 tvTT.setTextColor(Color.RED);
                 tvTT.setText("Đã nhận xe");
                 btnXuly.setText("Trả xe");
                 btnXuly.setEnabled(true);
+            }else if (v.getTrangThai() == 3) {
+                tvTT.setTextColor(Color.RED);
+                tvTT.setText("Đang xử lý");
+                btnXuly.setEnabled(false);
             } else if (v.getTrangThai() == 4) {
                 tvTT.setTextColor(Color.RED);
                 tvTT.setText("Đã trả xe");

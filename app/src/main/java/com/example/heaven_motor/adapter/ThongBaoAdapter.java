@@ -1,15 +1,11 @@
 package com.example.heaven_motor.adapter;
 
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,7 +16,6 @@ import com.example.heaven_motor.R;
 import com.example.heaven_motor.database.OrdersDao;
 import com.example.heaven_motor.database.UserDAO;
 import com.example.heaven_motor.database.VehicleDAO;
-import com.example.heaven_motor.fragment.LSDonHang_Fragment;
 import com.example.heaven_motor.fragment.yeu_cau_Fragment;
 import com.example.heaven_motor.model.Orders;
 import com.example.heaven_motor.model.Users;
@@ -28,6 +23,7 @@ import com.example.heaven_motor.model.Vehicle;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 public class ThongBaoAdapter extends ArrayAdapter<Orders> {
@@ -35,7 +31,7 @@ public class ThongBaoAdapter extends ArrayAdapter<Orders> {
     Context context;
     yeu_cau_Fragment fragment;
     TextView tvTenSp,tvMa,tvThoigian,tvYc,tvUser;
-    Button btnXuly;
+    Button btnXuly,btnHuy;
     Calendar calendar;
     SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 
@@ -63,7 +59,7 @@ public class ThongBaoAdapter extends ArrayAdapter<Orders> {
             tvUser = convertView.findViewById(R.id.item_thong_bao_tvuser_id);
             tvYc = convertView.findViewById(R.id.item_thong_bao_tvYc);
             btnXuly = convertView.findViewById(R.id.item_thong_bao_btn);
-
+            btnHuy = convertView.findViewById(R.id.item_thong_bao_btnHuy);
             OrdersDao ordersDao = new OrdersDao(context);
             VehicleDAO dao = new VehicleDAO(context);
             UserDAO userDAO = new UserDAO(context);
@@ -88,18 +84,49 @@ public class ThongBaoAdapter extends ArrayAdapter<Orders> {
                         dao.Update(v);
                         btnXuly.setText("Đã xử lý");
                         btnXuly.setEnabled(false);
+                        btnHuy.setEnabled(false);
                         calendar = Calendar.getInstance();
                     }
                 });
+                btnHuy.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        o.setStatus(1);
+                        btnHuy.setText("Đã hủy");
+                        btnXuly.setEnabled(false);
+                        btnHuy.setEnabled(false);
+                        calendar = Calendar.getInstance();
+                        o.setTimethuc(sdf.format(calendar.getTime()));
+                        ordersDao.Update(o);
+                        long a = Date.parse(o.getTimethuc());
+                        long b = Date.parse(o.getEnd_time());
+                        if ( a > b){
+                            int date = ordersDao.getDate1();
+                            if (date !=0){
+                                double date2 = ordersDao.getDate2(id_dh)*(v.getPrice()*1.5);
+                                o.setPhatsinh(date2);
+                                ordersDao.Update(o);
+                                Toast.makeText(context, "Đơn hàng này đã trả muộn: " + ordersDao.getDate2(id_dh) + " ngày", Toast.LENGTH_SHORT).show();
+                            }
+
+                        }
+                    }
+                });
+            }
+            if (o.getStatus() == 1){
+                btnHuy.setText("Đã hủy");
+                btnXuly.setEnabled(false);
+                btnHuy.setEnabled(false);
             }
 
             if( v.getTrangThai() == 2){
-
                 btnXuly.setText("Đã xử lý");
+                btnHuy.setEnabled(false);
                 btnXuly.setEnabled(false);
 
             }else if (v.getTrangThai() == 3){
                 tvYc.setText("Yêu cầu trả xe");
+                btnHuy.setEnabled(false);
                 btnXuly.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -110,12 +137,15 @@ public class ThongBaoAdapter extends ArrayAdapter<Orders> {
                         calendar = Calendar.getInstance();
                         o.setTimethuc(sdf.format(calendar.getTime()));
                         ordersDao.Update(o);
-                        if (o.getEnd_time() != o.getTimethuc()){
+                        long a = Date.parse(o.getTimethuc());
+                        long b = Date.parse(o.getEnd_time());
+                        if ( a > b){
                             int date = ordersDao.getDate1();
                             if (date !=0){
-                                int date2 = ordersDao.getDate2(id_dh)*v.getPrice();
+                                double date2 = ordersDao.getDate2(id_dh)*(v.getPrice()*1.5);
                                 o.setPhatsinh(date2);
                                 ordersDao.Update(o);
+                                Toast.makeText(context, "Đơn hàng này đã trả muộn: " + ordersDao.getDate2(id_dh) + " ngày", Toast.LENGTH_SHORT).show();
                             }
 
                         }
@@ -126,13 +156,9 @@ public class ThongBaoAdapter extends ArrayAdapter<Orders> {
                 dao.Update(v);
                 o.setStatus(2);
                 ordersDao.Update(o);
+                btnHuy.setEnabled(false);
             }else if (v.getTrangThai() == 0){
                 btnXuly.setText("Đã hoàn thành");
-                btnXuly.setEnabled(false);
-            }
-
-            if (o.getStatus() == 1){
-                btnXuly.setText("Đơn bị hủy");
                 btnXuly.setEnabled(false);
             }
         }
