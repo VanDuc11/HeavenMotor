@@ -20,31 +20,7 @@ public class UserDAO {
         sqLite = new SQL(context);
         db = sqLite.getWritableDatabase();
     }
-    public ArrayList<Users> getAll_rcv() {
-        ArrayList<Users> ds = new ArrayList<>();
-        SQLiteDatabase db = sqLite.getReadableDatabase();
-        String sql = "SELECT * FROM Users";
-        Cursor cs = db.rawQuery(sql, null);
-        cs.moveToFirst();
-        while (cs.isAfterLast() == false) {
 
-            String id = cs.getString(0);
-            String name = cs.getString(1);
-            String passwork = cs.getString(2);
-            String phone = cs.getString(3);
-            int date = cs.getInt(4);
-            String address = cs.getString(5);
-            String cccd = cs.getString(6);
-//            byte[] img = cs.getBlob(7);
-//            String phanHoi = cs.getString(8);
-            Users us = new Users();
-            ds.add(us);
-            cs.moveToNext();
-        }
-        cs.close();
-        db.close();
-        return ds;
-    }
     public int insert(Users u){
         ContentValues values = new ContentValues();
         values.put("id",u.getId());
