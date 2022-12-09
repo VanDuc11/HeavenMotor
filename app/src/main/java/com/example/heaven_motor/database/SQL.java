@@ -8,7 +8,7 @@ import androidx.annotation.Nullable;
 
 public class SQL extends SQLiteOpenHelper {
     public SQL(@Nullable Context context) {
-        super(context, "database.db", null, 5);
+        super(context, "database.db", null, 13);
     }
 
 
@@ -21,7 +21,7 @@ public class SQL extends SQLiteOpenHelper {
             "address text," +
             "img blob,"+
             "cccd text,"+
-            "phanHoi text)" ;
+            "phanHoi text);" ;
 
     public static final String Table_Categories = "CREATE TABLE Categories " +
             "(id integer PRIMARY KEY AUTOINCREMENT," +

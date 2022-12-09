@@ -11,6 +11,7 @@ public class Users {
     private byte[] img;
     private String phanhoi;
 
+
     public String getPhanhoi() {
         return phanhoi;
     }

@@ -32,6 +32,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.heaven_motor.Location.LocationActivity;
 import com.example.heaven_motor.R;
 import com.example.heaven_motor.Splash_screen_MainActivity2;
 import com.example.heaven_motor.database.UserDAO;
@@ -115,7 +116,7 @@ public class ToiFragment extends Fragment {
         vitri.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(),LocationActivity.class);
+                Intent intent = new Intent(getActivity(), LocationActivity.class);
                 startActivity(intent);
             }
         });
