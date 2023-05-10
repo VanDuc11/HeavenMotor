@@ -6,8 +6,8 @@ public class Orders {
     private String vehicle_id;
     private String start_time;
     private String end_time,timethuc;
-    private double total;
-    private double phatsinh;
+    private int total;
+    private int phatsinh;
     private int status;
 
     public Orders() {
@@ -61,19 +61,19 @@ public class Orders {
         this.timethuc = timethuc;
     }
 
-    public double getTotal() {
+    public int getTotal() {
         return total;
     }
 
-    public void setTotal(double total) {
+    public void setTotal(int total) {
         this.total = total;
     }
 
-    public double getPhatsinh() {
+    public int getPhatsinh() {
         return phatsinh;
     }
 
-    public void setPhatsinh(double phatsinh) {
+    public void setPhatsinh(int phatsinh) {
         this.phatsinh = phatsinh;
     }
 

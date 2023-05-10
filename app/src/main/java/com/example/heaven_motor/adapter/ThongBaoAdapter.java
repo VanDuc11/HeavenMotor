@@ -104,7 +104,7 @@ public class ThongBaoAdapter extends ArrayAdapter<Orders> {
                             int date = ordersDao.getDate1();
                             if (date !=0){
                                 double date2 = ordersDao.getDate2(id_dh)*(v.getPrice()*1.5);
-                                o.setPhatsinh(date2);
+                                o.setPhatsinh(Integer.parseInt(String.valueOf(date2)));
                                 ordersDao.Update(o);
                                 Toast.makeText(context, "Đơn hàng này đã trả muộn: " + ordersDao.getDate2(id_dh) + " ngày", Toast.LENGTH_SHORT).show();
                             }
@@ -143,7 +143,7 @@ public class ThongBaoAdapter extends ArrayAdapter<Orders> {
                             int date = ordersDao.getDate1();
                             if (date !=0){
                                 double date2 = ordersDao.getDate2(id_dh)*(v.getPrice()*1.5);
-                                o.setPhatsinh(date2);
+                                o.setPhatsinh(Integer.parseInt(String.valueOf(date2)));
                                 ordersDao.Update(o);
                                 Toast.makeText(context, "Đơn hàng này đã trả muộn: " + ordersDao.getDate2(id_dh) + " ngày", Toast.LENGTH_SHORT).show();
                             }

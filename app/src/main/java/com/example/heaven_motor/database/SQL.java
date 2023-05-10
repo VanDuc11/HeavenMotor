@@ -8,7 +8,7 @@ import androidx.annotation.Nullable;
 
 public class SQL extends SQLiteOpenHelper {
     public SQL(@Nullable Context context) {
-        super(context, "database.db", null, 13);
+        super(context, "database.db", null, 14);
     }
 
 
@@ -49,8 +49,8 @@ public class SQL extends SQLiteOpenHelper {
             "start_time date ," +
             "end_time date," +
             "status integer," +
-            " total real," +
-            "phatsinh real," +
+            " total integer," +
+            "phatsinh integer," +
             "timethuc date);";
     public static final String Table_Feedback = "CREATE TABLE Feedback" +
             "(id integer PRIMARY KEY AUTOINCREMENT," +

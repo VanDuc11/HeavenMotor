@@ -326,9 +326,7 @@ public class QLyXe_Fragment extends Fragment {
     }
 
 
-    private void openImg() {
 
-    }
 
     public int Validate() {
         int check = 1;

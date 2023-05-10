@@ -41,11 +41,13 @@ public class DoanhThu_Fragment extends Fragment {
     OrdersDao dao;
     DoanhThuAdapter adapter;
     List<Orders> list;
+    OrdersDao ordersDao;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v= inflater.inflate(R.layout.fragment_doanh_thu, container, false);
+         ordersDao = new OrdersDao(getContext());
 
         edtungay = v.findViewById(R.id.edtungay);
         eddenngay = v.findViewById(R.id.edDenNgay);
@@ -72,8 +74,8 @@ public class DoanhThu_Fragment extends Fragment {
             public void onClick(View v) {
                 String tungay = edtungay.getText().toString();
                 String denngay = eddenngay.getText().toString();
-                OrdersDao ordersDao = new OrdersDao(getActivity());
-                tvdoanhthu.setText("Doanh thu: "+ordersDao.getdoanhthu(tungay,denngay)+" đ");
+                int kq = ordersDao.getdoanhthu(tungay,denngay);
+                tvdoanhthu.setText("Doanh thu: "+kq+" đ");
                 loaData();
             }
         });
