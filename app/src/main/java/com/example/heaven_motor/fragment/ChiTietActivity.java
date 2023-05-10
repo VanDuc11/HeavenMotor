@@ -58,6 +58,7 @@ public class ChiTietActivity extends AppCompatActivity {
             tvTrangThai.setText(String.valueOf(obj.getStatus()));
             tvBKS.setText(obj.getBKS());
             tvNam.setText(String.valueOf(obj.getYear()));
+
             Bitmap bitmap = BitmapFactory.decodeByteArray(obj.getImg(), 0, obj.getImg().length);
             img.setImageBitmap(bitmap);
         } else {

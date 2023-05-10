@@ -39,11 +39,7 @@ public class yeu_cau_Fragment extends Fragment {
     ThongBaoAdapter adapter;
 
     UserDAO userDAO;
-    Dialog dialog;
 
-
-    TextView tvid , tvUser, tvxe,tvloai,tvdate,tvtien;
-    Button btnHuydon;
     @SuppressLint("MissingInflatedId")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
