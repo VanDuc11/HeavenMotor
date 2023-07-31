@@ -139,7 +139,7 @@ public class OrdersDao {
     }
     @SuppressLint("Range")
     public int getPrice(String id){
-        String sql ="SELECT UM(toStal+phatsinh) as tongtien FROM Orders WHERE id=? AND status = 2";
+        String sql ="SELECT SUM(total+phatsinh) as tongtien FROM Orders WHERE id=? AND status = 2";
         List<Integer> list = new ArrayList<>();
         Cursor c = db.rawQuery(sql,new String[]{id});
         while (c.moveToNext()){
